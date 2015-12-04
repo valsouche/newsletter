@@ -5,9 +5,9 @@
 - `git clone` repo
 - run `npm install` in : 
     - newsletter/
-    - newsletter/app
+    - newsletter/public
 - run `bower install` in : 
-    - newsletter/app
+    - newsletter/public
 
 and run server in newsletter/ : 
 
