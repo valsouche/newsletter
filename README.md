@@ -1,15 +1,18 @@
 # newsletter
-<<<<<<< HEAD
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.14.0.
+## How to Run
 
-## Build & development
+- `git clone` repo
+- run `npm install` in : 
+    - newsletter/
+    - newsletter/app
+- run `bower install` in : 
+    - newsletter/app
 
-Run `grunt` for building and `grunt serve` for preview.
+and run server in newsletter/ : 
 
-## Testing
+`node server.js`
 
-Running `grunt test` will run the unit tests with karma.
-=======
->>>>>>> 882b86259e9302c4a4795cff239e0d569cbd18ab
+Happy dev :D
+
+####PS : Port use 8080, please stop apache service because it use the same port :)
