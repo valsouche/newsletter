@@ -9,9 +9,14 @@
 - run `bower install` in : 
     - newsletter/public
 
-and run server in newsletter/ : 
-
-`node server.js`
+- run MongoDB : open a terminal and : `mongod``
+- Create a database : firemail : 
+    - open other terminal and : 
+        - `mongo`
+        - `use firemail`
+        
+#####and run server in newsletter/ : 
+  - `node server.js`
 
 Happy dev :D
 
