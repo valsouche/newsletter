@@ -20,68 +20,78 @@
     app.use(methodOverride());
 
     // define model =================
-    var Todo = mongoose.model('Todos', {
+    var Email = mongoose.model('Emails', {
         text : String
+    });
+
+    var User = mongoose.model('Users', {
+        Username : String,
+        Email : String,
+        Passwd : String
     });
 
     // routes ======================================================================
 
-    // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function(req, res) {
 
-        // use mongoose to get all todos in the database
-        Todo.find(function(err, todos) {
+    // api ---------------------------------------------------------------------
+    // get all emails
+    app.get('/api/emails', function(req, res) {
+
+        // use mongoose to get all emails in the database
+        Email.find(function(err, emails) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-
-            res.json(todos); // return all todos in JSON format
+            if(err) {
+              res.send(err)
+            }
+            res.json(emails); // return all emails in JSON format
         });
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function(req, res) {
+    // create email and send back all emails after creation
+    app.post('/api/emails', function(req, res) {
 
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text : req.body.text,
-            done : false
-        }, function(err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            Todo.find(function(err, todos) {
-                if (err)
-                    res.send(err)
-                res.json(todos);
+        // create a email, information comes from AJAX request from Angular@
+        Email.create({
+          text : req.body.text,
+          done : false
+        }, function(err, email) {
+            if(err) {
+              res.send(err);
+            }
+            // get and return all the emails after you create another
+            Email.find(function(err, emails) {
+                if(err) {
+                  res.send(err);
+                }    
+                res.json(emails);
             });
         });
 
     });
 
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function(req, res) {
-        Todo.remove({
-            _id : req.params.todo_id
-        }, function(err, todo) {
-            if (err)
-                res.send(err);
+    // delete an email
+    app.delete('/api/emails/:email_id', function(req, res) {
+        Email.remove({
+            _id : req.params.email_id
+        }, function(err, Email) {
+            if(err) {
+              res.send(err);
+            }
 
-            // get and return all the todos after you create another
-            Todo.find(function(err, todos) {
-                if (err)
-                    res.send(err)
-                res.json(todos);
+            // get and return all the emails after you create another
+            Email.find(function(err, emails) {
+                if(err) {
+                  res.send(err);
+                }    
+                res.json(emails);
             });
         });
     });
 
  // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
-
+   
     // listen (start app with node server.js) ======================================
     app.listen(8080);
-    console.log("App listening on port 8080");
+    console.log("Newsletter App started on :8080");
