@@ -1,15 +1,25 @@
 # newsletter
-<<<<<<< HEAD
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.14.0.
+## How to Run
 
-## Build & development
+- `git clone` repo
+- run `npm install` in : 
+    - newsletter/
+    - newsletter/public
+- run `bower install` in : 
+    - newsletter/public
 
-Run `grunt` for building and `grunt serve` for preview.
+- run MongoDB : open a terminal and : `mongod``
+- Create a database : firemail : 
+    - open other terminal and : 
+        - `mongo`
+        - `use firemail`
+        
+#####and run server in newsletter/ : 
+  - `node server.js`
 
-## Testing
+### Create branch
+For each future, please create branch with explicite name: `git checkout -b "feat/your-branch-name"`
+Happy dev :D
 
-Running `grunt test` will run the unit tests with karma.
-=======
->>>>>>> 882b86259e9302c4a4795cff239e0d569cbd18ab
+####PS : Port use 8080, please stop apache service because it use the same port :)
