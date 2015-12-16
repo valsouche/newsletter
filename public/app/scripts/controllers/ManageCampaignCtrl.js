@@ -14,8 +14,13 @@ angular.module('newsletterApp')
     // when landing on the page, get all todos and show them
     $http.get('/api/todos')
         .success(function(data) {
-            $scope.todos = data;
-            console.log(data);
+            $scope.compaigns = data;
+            //$scope.todos = data;
+            if(data.length!=0){
+                angular.forEach(data, function(value) {
+                    angular.element(document.getElementById('campaigne_list')).append($compile("<tr><td>"+value.status+"</td><td><table><tr><td>"+value.title+"</td><td>"+value.description+"</td></tr></table></td><td><a href='#' class='btn btn-info'>Detail</a><a href='#' class='btn btn-info'>Send</a></td></tr>"));  
+                }, log);
+            }
         })
         .error(function(data) {
             console.log('Error: ' + data);
