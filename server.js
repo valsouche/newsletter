@@ -36,6 +36,7 @@
       template : String,
       contact : String,
       creator : String,
+      status : String,
     });
 
     // routes ======================================================================
@@ -115,6 +116,7 @@
         Campaign.create({
           title : req.body.title,
           describe : req.body.describe,
+          status: "En attente",
           done : false
         }, function(err) {
             if(err) {
