@@ -12,10 +12,10 @@ angular.module('newsletterApp')
      $scope.formData = {};
 
     // when landing on the page, get all todos and show them
-    $http.get('/api/emails')
+    $http.get('/api/campaigns')
         .success(function(data) {
-            $scope.emails = data;
-            console.log(data);
+            $scope.campaigns = data;
+            //$scope.todos = data;
         })
         .error(function(data) {
             console.log('Error: ' + data);
@@ -23,7 +23,7 @@ angular.module('newsletterApp')
 
     // delete a todo after checking it
     $scope.deleteTodo = function(id) {
-        $http.delete('/api/emails/' + id)
+        $http.delete('/api/campaings/' + id)
             .success(function(data) {
                 $scope.emails = data;
                 console.log(data);

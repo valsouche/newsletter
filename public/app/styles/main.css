@@ -10,10 +10,74 @@
   margin-left: 15px;
   margin-top: 20px;
 }
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
+.navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  background: #009CDE;
 }
+.navbar-nav>.active{
+  background: ##1A2937;
+}
+
+/*****************************************/
+/*page header/page title*/
+.bs-docs-header{
+  background: #1A2937;
+  color: #FFF;
+  padding: 20px;
+  margin-
+  top: 0px;
+  font-family:'';
+}
+.bs-docs-header .btn{
+  background: #68FF68;
+  color:#1A2937;
+
+}
+.bs-docs-header .btn:hover{
+  background:#5de55d;
+}
+
+/*****************************************/
+/* page campagnes */
+#campaigne_page_title .btn{
+  margin:auto 15% auto auto;
+  float: right;
+}
+#campaigne_page_list h3{
+  color: #1A2937
+}
+#campaigne_page_list table{
+  width: 80%;
+}
+#campaigne_page_list thead{
+  border-bottom-style: inset;
+  border-bottom-color: #f4f4f4;
+}
+#campaigne_page_list .title-campaigne{
+  font-size: 20px;
+  font-weight: bold;
+  color: #020405;
+}
+
+#campaigne_page_list .title-campaigne:first-letter {
+  text-transform: uppercase;
+}
+
+#campaigne_page_list .descp-campaigne{
+  padding-left: 2%;
+}
+#campaigne_page_list .btn-campaigne{
+  vertical-align: bottom; 
+}
+#campaigne_page_list .btn-campaigne .btn{
+  color: #1A2937;
+  background-color: #fff;
+  border-color: #000;
+}
+#campaigne_page_list .btn-campaigne .btn:hover{
+    color: #fff;
+    background-color: #1A2937;
+}
+
 
