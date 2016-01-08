@@ -1,35 +1,37 @@
 
-<div class="container-fluid bs-docs-header" id="content">
+<div class="container-fluid bs-docs-header" id="campaigne_page_title">
     <div class="container">
-        <h1>Campaign</h1>
+        <h1>Campagne</h1>
         <p>This is compaigne page, you can manege your compaigns and add a new compaign.</p>
-        <a href="#/create-campaign" class="btn btn-info">New Compaigne</a>
+        <a href="#/create-campaign" class="btn">Nouveau campagne</a>
     </div>
 </div>
-<div class="container">
-    <h1>Mes Compaigns <span class="label label-info">{{ compaigns.length }}</span></h1>
+<div class="container" id="campaigne_page_list">
+    <h3>Mes Campagnes ( {{ campaigns.length }} )</h3>
         <table class="table table-hover">
             <thead>
               <tr>
-                <th>Status</th>
+                <th style="width:10%;">Status</th>
                 <th>Info</th>
-                <th>Action</th>
+                <th style="width:20%;">Action</th>
               </tr>
             </thead>
             <tbody id="campaigne_list">
-              <tr ng-repeat="compaign in compaigns">
-                <td>{{compaign.status}}</td>
+              <tr ng-repeat="campaign in campaigns">
+                <td>{{campaign.status}}</td>
                 <td>
                   <table>
                     <tr>
-                        <td>{{compaign.title}}</td>
-                        <td>{{compaign.description}}</td>
+                        <td class="title-campaigne">{{campaign.title}}</td>
+                    </tr>
+                    <tr>
+                        <td class="descp-campaigne">{{campaign.describe}}</td>
                     </tr>
                   </table>
                 </td>
-                <td>
-                    <a href='/#/' class='btn btn-info'>Detail</a>
-                    <a href='/#/' class='btn btn-info'>Send</a>
+                <td class="btn-campaigne">
+                    <a href='/#/' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
+                    <a href='/#/' class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
                 </td>
               </tr>
             </tbody>

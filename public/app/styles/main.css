@@ -1,92 +1,83 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+/*===================
+  HEADER
+======================*/
+.header-button {
+  float: right;
+  margin-top: 7px;
 }
 
-body {
-  padding: 0;
+.form-button {
+  margin-left: 15px;
+  margin-top: 20px;
+}
+.navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  background: #009CDE;
+}
+.navbar-nav>.active{
+  background: ##1A2937;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
 /*****************************************/
-/*page campaign*/
+/*page header/page title*/
 .bs-docs-header{
   background: #1A2937;
   color: #FFF;
   padding: 20px;
-  margin-top: 0px;
+  margin-
+  top: 0px;
+  font-family:'';
+}
+.bs-docs-header .btn{
+  background: #68FF68;
+  color:#1A2937;
+
+}
+.bs-docs-header .btn:hover{
+  background:#5de55d;
+}
+
+/*****************************************/
+/* page campagnes */
+#campaigne_page_title .btn{
+  margin:auto 15% auto auto;
+  float: right;
+}
+#campaigne_page_list h3{
+  color: #1A2937
+}
+#campaigne_page_list table{
+  width: 80%;
+}
+#campaigne_page_list thead{
+  border-bottom-style: inset;
+  border-bottom-color: #f4f4f4;
+}
+#campaigne_page_list .title-campaigne{
+  font-size: 20px;
+  font-weight: bold;
+  color: #020405;
+}
+
+#campaigne_page_list .title-campaigne:first-letter {
+  text-transform: uppercase;
+}
+
+#campaigne_page_list .descp-campaigne{
+  padding-left: 2%;
+}
+#campaigne_page_list .btn-campaigne{
+  vertical-align: bottom; 
+}
+#campaigne_page_list .btn-campaigne .btn{
+  color: #1A2937;
+  background-color: #fff;
+  border-color: #000;
+}
+#campaigne_page_list .btn-campaigne .btn:hover{
+    color: #fff;
+    background-color: #1A2937;
 }
 
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}

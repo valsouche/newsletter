@@ -20,68 +20,124 @@
     app.use(methodOverride());
 
     // define model =================
-    var Compaigns = mongoose.model('campaigns', {
-        text : String
+    var Email = mongoose.model('Emails', {
+      text : String
+    });
+
+    var User = mongoose.model('Users', {
+      username : String,
+      email : String,
+      passwd : String
+    });
+
+    var Campaign = mongoose.model('Campaigns', {
+      title : String,
+      describe : String,
+      template : String,
+      contact : String,
+      creator : String,
     });
 
     // routes ======================================================================
 
-    // api ---------------------------------------------------------------------
-    // get all compaigns
-    app.get('/api/compaigns', function(req, res) {
 
-        // use mongoose to get all compaigns in the database
-        Compaigns.find(function(err, compaigns) {
+    // api ---------------------------------------------------------------------
+    // get all emails
+    app.get('/api/emails', function(req, res) {
+        // use mongoose to get all emails in the database
+        Email.find(function(err, emails) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-            if (err)
-                res.send(err)
-
-            res.json(compaigns); // return all compaigns in JSON format
+            if(err) {
+              res.send(err)
+            }
+            res.json(emails); // return all emails in JSON format
         });
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function(req, res) {
+    // create email and send back all emails after creation
+    app.post('/api/emails', function(req, res) {
 
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text : req.body.text,
-            done : false
-        }, function(err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            Todo.find(function(err, todos) {
-                if (err)
-                    res.send(err)
-                res.json(todos);
-            });
-        });
-
-    });
-
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function(req, res) {
-        Todo.remove({
-            _id : req.params.todo_id
-        }, function(err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            Todo.find(function(err, todos) {
-                if (err)
-                    res.send(err)
-                res.json(todos);
+        // create a email, information comes from AJAX request from Angular@
+        Email.create({
+          text : req.body.text,
+          done : false
+        }, function(err, email) {
+            if(err) {
+              res.send(err);
+            }
+            // get and return all the emails after you create another
+            Email.find(function(err, emails) {
+                if(err) {
+                  res.send(err);
+                }    
+                res.json(emails);
             });
         });
     });
+
+    // delete an email
+    app.delete('/api/emails/:email_id', function(req, res) {
+        Email.remove({
+            _id : req.params.email_id
+        }, function(err, Email) {
+            if(err) {
+              res.send(err);
+            }
+
+            // get and return all the emails after you create another
+            Email.find(function(err, emails) {
+                if(err) {
+                  res.send(err);
+                }    
+                res.json(emails);
+            });
+        });
+    });
+
+  // Campaigns -------------------------------------------------------------
+
+  // get all Campaigns
+    app.get('/api/campaigns', function(req, res) {
+        // use mongoose to get all emails in the database
+        Campaign.find(function(err, campaigns) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if(err) {
+              res.send(err)
+            }
+            res.json(campaigns); // return all emails in JSON format
+        });
+    });
+
+// create campaign
+    app.post('/api/campaigns', function(req, res) {
+        // create a email, information comes from AJAX request from Angular@
+        Campaign.create({
+          title : req.body.title,
+          describe : req.body.describe,
+          done : false
+        }, function(err) {
+            if(err) {
+              res.send(err);
+            }
+        });
+    });
+
+    // delete a campaign
+    app.delete('/api/campaigns/:campaign_id', function(req, res) {
+        Campaign.remove({
+            _id : req.params.campaign_id
+        }, function(err) {
+            if(err) {
+              res.send(err);
+            }
+        });
+    });
+
 
  // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
-
+   
     // listen (start app with node server.js) ======================================
     app.listen(8080);
-    console.log("App listening on port 8080");
+    console.log("Newsletter App started on :8080");
