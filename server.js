@@ -20,24 +20,24 @@
     app.use(methodOverride());
 
     // define model =================
-    var Todo = mongoose.model('Todos', {
+    var Compaigns = mongoose.model('Campaignes', {
         text : String
     });
 
     // routes ======================================================================
 
     // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function(req, res) {
+    // get all compaigns
+    app.get('/api/compaigns', function(req, res) {
 
-        // use mongoose to get all todos in the database
-        Todo.find(function(err, todos) {
+        // use mongoose to get all compaigns in the database
+        Compaigns.find(function(err, compaigns) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if (err)
                 res.send(err)
 
-            res.json(todos); // return all todos in JSON format
+            res.json(compaigns); // return all compaigns in JSON format
         });
     });
 

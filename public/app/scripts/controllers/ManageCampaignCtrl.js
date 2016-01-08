@@ -12,11 +12,13 @@ angular.module('newsletterApp')
      $scope.formData = {};
 
     // when landing on the page, get all todos and show them
-    $http.get('/api/todos')
+    $http.get('/api/compaigns')
         .success(function(data) {
             $scope.compaigns = data;
             //$scope.todos = data;
+            console.log(data);
             if(data.length!=0){
+                console.log(data);
                 angular.forEach(data, function(value) {
                     angular.element(document.getElementById('campaigne_list')).append($compile("<tr><td>"+value.status+"</td><td><table><tr><td>"+value.title+"</td><td>"+value.description+"</td></tr></table></td><td><a href='#' class='btn btn-info'>Detail</a><a href='#' class='btn btn-info'>Send</a></td></tr>"));  
                 }, log);
