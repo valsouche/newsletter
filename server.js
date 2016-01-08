@@ -21,13 +21,21 @@
 
     // define model =================
     var Email = mongoose.model('Emails', {
-        text : String
+      text : String
     });
 
     var User = mongoose.model('Users', {
-        Username : String,
-        Email : String,
-        Passwd : String
+      username : String,
+      email : String,
+      passwd : String
+    });
+
+    var Campaign = mongoose.model('Campaigns', {
+      title : String,
+      describe : String,
+      template : String,
+      contact : String,
+      creator : String,
     });
 
     // routes ======================================================================
@@ -36,7 +44,6 @@
     // api ---------------------------------------------------------------------
     // get all emails
     app.get('/api/emails', function(req, res) {
-
         // use mongoose to get all emails in the database
         Email.find(function(err, emails) {
 
@@ -67,7 +74,6 @@
                 res.json(emails);
             });
         });
-
     });
 
     // delete an email
@@ -88,6 +94,46 @@
             });
         });
     });
+
+  // Campaigns -------------------------------------------------------------
+
+  // get all Campaigns
+    app.get('/api/campaigns', function(req, res) {
+        // use mongoose to get all emails in the database
+        Campaign.find(function(err, campaigns) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if(err) {
+              res.send(err)
+            }
+            res.json(campaigns); // return all emails in JSON format
+        });
+    });
+
+// create campaign
+    app.post('/api/campaigns', function(req, res) {
+        // create a email, information comes from AJAX request from Angular@
+        Campaign.create({
+          title : req.body.title,
+          describe : req.body.describe,
+          done : false
+        }, function(err) {
+            if(err) {
+              res.send(err);
+            }
+        });
+    });
+
+    // delete a campaign
+    app.delete('/api/campaigns/:campaign_id', function(req, res) {
+        Campaign.remove({
+            _id : req.params.campaign_id
+        }, function(err) {
+            if(err) {
+              res.send(err);
+            }
+        });
+    });
+
 
  // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
