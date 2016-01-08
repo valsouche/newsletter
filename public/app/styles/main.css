@@ -87,5 +87,15 @@
     color: #fff;
     background-color: #1A2937;
 }
+#campaigne_page_list .btn-campaigne .supprimer:hover{
+    color:red;
+    border: 2px solid red;
+    background-color: #fff;
+}
+#campaigne_page_list .btn-campaigne .supprimer{
+    color:#fff;
+    border: 2px solid red;
+    background-color: red;
+}
 
 
