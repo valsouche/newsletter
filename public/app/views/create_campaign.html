@@ -1,22 +1,38 @@
-<h2>Create Campaign</h2>
-<form>
-  <div class="form-group">
-    <label for="campaignTitle">Titre</label>
-    <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne">
-  </div>
-  <div class="form-group">
-    <label for="campaignDescribe">Description</label>
-    <input type="textarea" class="form-control" id="campaignDescribe" placeholder="Petite description ...">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">Template</label>
-    <input type="file" id="exampleInputFile">
-    <a class="help-block">Aucun template ? Créez en un !</a>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">Liste de diffusion</label>
-    <input type="file" id="exampleInputFile">
-    <a class="help-block">Importez vos contacts.</a>
-  </div>
-  <button type="submit" class="btn btn-default">Créer campagne</button>
-</form>
+  <h2>Create Campaign</h2>
+  <form>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <label for="campaignTitle">Titre</label>
+        <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne" ng-model="dataCampaign.title">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="campaignDescribe">Description</label>
+        <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Petite description ..." 
+        ng-model="dataCampaign.describe"></textarea>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <label for="campaignDescribe">Selectionner un template</label>
+        <select class="form-control">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <label for="campaignDescribe">Selectionner une liste de contact</label>
+        <select class="form-control">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div> 
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-default form-button" ng-click="createCampaign()">Créer campagne</button>
+    </div>
+  </form>
+
