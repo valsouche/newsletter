@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="container">
-    <h1>Mes Compaigns <span class="label label-info">{{ campaigns.length }}</span></h1>
+    <h1>Mes Compaigns <span class="label label-info">{{ compaigns.length }}</span></h1>
         <table class="table table-hover">
             <thead>
               <tr>
@@ -17,7 +17,21 @@
               </tr>
             </thead>
             <tbody id="campaigne_list">
-              
+              <tr ng-repeat="compaign in compaigns">
+                <td>{{compaign.status}}</td>
+                <td>
+                  <table>
+                    <tr>
+                        <td>{{compaign.title}}</td>
+                        <td>{{compaign.description}}</td>
+                    </tr>
+                  </table>
+                </td>
+                <td>
+                    <a href='/#/' class='btn btn-info'>Detail</a>
+                    <a href='/#/' class='btn btn-info'>Send</a>
+                </td>
+              </tr>
             </tbody>
           </table>
     </div>

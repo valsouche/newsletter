@@ -20,7 +20,7 @@
     app.use(methodOverride());
 
     // define model =================
-    var Compaigns = mongoose.model('Campaignes', {
+    var Compaigns = mongoose.model('campaigns', {
         text : String
     });
 
