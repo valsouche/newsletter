@@ -1,6 +1,11 @@
-  <h2>Create Campaign</h2>
-  <form>
-    <div class="row">
+<div class="container-fluid bs-doc-header">
+  <div class="container">
+    <h2>Create Campaign</h2>
+  </div>
+</div>
+<form>
+  <div class="row">
+    <div class="container">
       <div class="form-group col-md-6 col-sm-12">
         <label for="campaignTitle">Titre</label>
         <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne" ng-model="dataCampaign.title">
@@ -11,28 +16,23 @@
         ng-model="dataCampaign.describe"></textarea>
       </div>
       <div class="col-md-6 col-sm-12">
-        <label for="campaignDescribe">Selectionner un template</label>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <label for="templates">Selectionner un template</label>
+        <select id="templates" class="form-control">
+          <option> Templates</option>
         </select>
       </div>
       <div class="col-md-6 col-sm-12">
-        <label for="campaignDescribe">Selectionner une liste de contact</label>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <label for="diffusionList">Selectionner une liste de contact</label>
+        <select id="diffusionList" class="form-control">
+          <option>Listes</option>
         </select>
       </div> 
     </div>
-    <div class="row">
-      <button type="submit" class="btn btn-default form-button" ng-click="createCampaign()">Créer campagne</button>
+  </div>
+  <div class="row">
+    <div class="container">
+      <button type="submit" class="btn btn-default form-button" ng-click="createCampaign()">Enregistrer campagne</button>
     </div>
-  </form>
+  </div>
+</form>
 
