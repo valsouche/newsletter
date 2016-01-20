@@ -1,0 +1,29 @@
+<div class="container-fluid bs-docs-header" id="campaigne_page_title">
+    <div class="container">
+        <h1>Templates</h1>
+        <p>Page de gestion de templates, n'hésitez pas à en créer d'avantages !</p>
+        <a ng-href="#/create-template" class="btn">Nouveau template</a>
+    </div>
+</div>
+<div class="container" id="campaigne_page_list">
+    <h3>Mes Templates ( {{ templates.length }} )</h3>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th style="width:10%;">Titre</th>
+                <th>Description</th>
+                <th style="width:15%;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="campaigne_list">
+              <tr ng-repeat="template in templates">
+                <td>{{template.title}}</td>
+                <td>{{template.describe}}</td>
+                <td class="btn-campaigne">
+                    <a href="#/update-template/{{template._id}}" class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
+                    <a class='btn supprimer' title="Supprimer" ng-click="deleteTemplate(template._id)"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+</div>

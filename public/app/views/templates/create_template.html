@@ -1,0 +1,34 @@
+<div class="container-fluid bs-docs-header">
+  <div class="container">
+    <h2>Créer un template</h2>
+    <p>Créez de beaux templates et réutilisez les pour vos campagnes.</p>
+    <a ng-href="#/manage-template" class="btn">Gérer mes templates</a>
+  </div>
+</div>
+
+<form>
+  <div class="row">
+    <div class="container">
+      <div class="form-group col-md-4 col-sm-12">
+        <label for="campaignTitle">Titre</label>
+        <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre newsletter" ng-model="dataTemplate.title">
+      </div>
+      <div class="form-group col-md-8 col-sm-12">
+        <label for="campaignDescribe">Description de votre template</label>
+        <input type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre newsletter" ng-model="dataTemplate.describe">
+      </div>
+      <div class="form-group col-md-12">
+        <label for="campaignContent">Corps de votre message</label>
+        <textarea type="text" class="form-control" id="campaignContent" placeholder="Contenu de votre newsletter"
+        ng-model="dataTemplate.content"></textarea>
+      </div>
+    </div>
+  </div>
+  {{template.describe}}
+  <div class="row">
+    <div class="container">
+      <button class="btn btn-default form-button" ng-if="!isUpdated" ng-click="createTemplate()">Enregistrer template</button>
+      <button class="btn btn-default form-button" ng-if="isUpdated" ng-click="updateTemplate()">Mettre à jour</button>
+    </div>
+  </div>
+</form>
