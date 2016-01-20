@@ -16,7 +16,15 @@
   background: #009CDE;
 }
 .navbar-nav>.active{
-  background: ##1A2937;
+  background: #1A2937;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: #1A2937;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #fff;
+    background-color: #1A2937;
 }
 
 /*****************************************/
@@ -27,7 +35,6 @@
   padding: 20px;
   margin-
   top: 0px;
-  font-family:'';
 }
 .bs-docs-header .btn{
   background: #68FF68;
@@ -78,6 +85,16 @@
 #campaigne_page_list .btn-campaigne .btn:hover{
     color: #fff;
     background-color: #1A2937;
+}
+#campaigne_page_list .btn-campaigne .supprimer:hover{
+    color:red;
+    border: 2px solid red;
+    background-color: #fff;
+}
+#campaigne_page_list .btn-campaigne .supprimer{
+    color:#fff;
+    border: 2px solid red;
+    background-color: red;
 }
 
 
