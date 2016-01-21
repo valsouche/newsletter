@@ -160,7 +160,6 @@
         });
     });
 
-<<<<<<< HEAD
     //update a campagne
     app.put('/api/updateCampaigns/:campaign_id',function(req,res){
       Campaign.findOne({
@@ -179,7 +178,6 @@
 
       })
     })
-=======
     // Templates -------------------------------------------------------------
 
       // get all Templates
@@ -254,7 +252,6 @@
         });
     });
 
->>>>>>> master
 
 
  // application -------------------------------------------------------------

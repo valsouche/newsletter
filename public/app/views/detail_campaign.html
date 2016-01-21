@@ -14,6 +14,7 @@
 	    <label for="campaignTitle" class="col-sm-1 control-label">Title: </label>
 	    <div class="col-sm-4">
 	      <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title" >
+
 	    </div>
 	    <label for="campaignDescribe" class="col-sm-1 control-label">Description: </label>
 	    <div class="col-sm-4">
@@ -24,7 +25,7 @@
 	  <div class="form-group">
 	    <label for="templates" class="col-sm-1 control-label">Templates: </label>
 	    <div class="col-sm-9">
-	      <select id="templates" class="form-control" ng-model="dataTemplate.templete">
+	      <select id="templates" class="form-control" ng-model="detailCampaign.templete">
 	          <option> Templates</option>
 	        </select>
 	    </div>
@@ -32,7 +33,7 @@
 	  <div class="form-group">
 	    <label for="diffusionList" class="col-sm-1 control-label">List de diffusion: </label>
 	    <div class="col-sm-9">
-            <select id="diffusionList" class="form-control" ng-model="dataTemplate.diffusionList">
+            <select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
 	          <option>Listes</option>
 	        </select>
 	    </div>

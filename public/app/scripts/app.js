@@ -16,14 +16,9 @@
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-<<<<<<< HEAD
   ]);
 
-  app.config(function ($routeProvider) {
-=======
-  ])
-  .config(function ($routeProvider, $locationProvider) {
->>>>>>> master
+  app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -41,7 +36,6 @@
         templateUrl: 'views/manage_group.html',
         controller: 'ManageGroupCtrl',
       })
-<<<<<<< HEAD
       .when('/detail-campaign/:campaign_id',{
          templateUrl: 'views/detail_campaign.html',
          controller: 'DetailCampaignCtrl'
@@ -56,7 +50,6 @@
       //   controller: 'CreateTemplateCtrl',
       //   activetab: 'create-template'
       // })
-=======
       .when('/manage-template', {
         templateUrl: 'views/templates/manage_template.html',
         controller: 'ManageTemplateCtrl',
@@ -69,7 +62,6 @@
         templateUrl: 'views/templates/create_template.html',
         controller: 'CreateTemplateCtrl',
       })
->>>>>>> master
       .otherwise({
         redirectTo: '/'
       });
