@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+ var app = angular
   .module('newsletterApp', [
     'ngAnimate',
     'ngCookies',
@@ -16,8 +16,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  ]);
+
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -38,6 +39,10 @@ angular
         controller: 'ManageGroupCtrl',
         activetab: 'manage-group'
       })
+      .when('/detail-campaign/:campaign_id',{
+         templateUrl: 'views/detail_campaign.html',
+         controller: 'DetailCampaignCtrl'
+       })
       // .when('/manage-template', {
       //   templateUrl: 'views/manage_template.html',
       //   controller: 'ManageTemplateCtrl',

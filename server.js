@@ -110,8 +110,19 @@
         });
     });
 
+  // get a Campaigne
+    app.get('/api/campaignsDetail/:campaign_id', function(req, res){
+        Campaign.find({_id:req.params.campaign_id} , function(err,campaign) {
+            if(err) {
+              res.send(err);
+            }
+            res.json(campaign);
+          });
+      
+    });
+
 // create campaign
-    app.post('/api/campaigns', function(req, res) {
+    app.put('/api/campaigns', function(req, res) {
         // create a email, information comes from AJAX request from Angular@
         Campaign.create({
           title : req.body.title,
@@ -122,11 +133,11 @@
             if(err) {
               res.send(err);
             }
-        });
+          });
     });
 
     // delete a campaign
-    app.delete('/api/campaigns/:campaign_id', function(req, res) {
+    app.delete('/api/deleteCampaigns/:campaign_id', function(req, res) {
         Campaign.remove({
             _id : req.params.campaign_id
         }, function(err) {
@@ -134,7 +145,33 @@
               res.send(err);
             }
         });
+        Campaign.find(function(err, campaigns) {
+            // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+            if(err) {
+              res.send(err)
+            }
+            res.json(campaigns); // return all emails in JSON format
+        });
     });
+
+    //update a campagne
+    app.put('/api/updateCampaigns/:campaign_id',function(req,res){
+      Campaign.findOne({
+        _id : req.params.campaign_id
+      },function(err,campaign){
+          if(err){
+            res.send(err)
+          }
+          campaign.title = req.body.title;
+          campaign.describe = req.body.describe;
+          campaign.template = req.body.template;
+          campaign.diffusionList = req.body.diffusionList;
+          campaign.save(function() {
+            res.send("Campaign Updated !");
+          });
+
+      })
+    })
 
 
  // application -------------------------------------------------------------
