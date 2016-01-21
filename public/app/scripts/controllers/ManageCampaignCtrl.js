@@ -22,14 +22,15 @@ angular.module('newsletterApp')
         });
 
     // delete a todo after checking it
-    $scope.deleteTodo = function(id) {
-        $http.delete('/api/campaings/' + id)
+    $scope.deleteCampaigns = function(id) {
+        $http.delete('/api/deleteCampaigns/' + id)
             .success(function(data) {
-                $scope.emails = data;
+                $scope.campaigns = data;
                 console.log(data);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
     };
+    
   });

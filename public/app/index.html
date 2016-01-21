@@ -9,10 +9,11 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css" />
+    <link rel="stylesheet" href="../bower_components/sweetalert2/dist/sweetalert2.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/main.css"
     <!-- endbuild -->
   </head>
   <body ng-app="newsletterApp">
@@ -39,11 +40,18 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li><a href="#/">Tableau de bord</a></li>
-              <li><a ng-href="#/manage-campaign">Templates</a></li>
-              <li><a ng-href="#/liste-de-diffusion">Listes de diffusion</a></li>
+              <li><a href="#/manage-campaign">Tableau de bord</a></li>
+              <li><a ng-href="#/manage-template">Templates</a></li>
+              <li><a ng-href="#/manage-group">Listes de diffusion</a></li>
             </ul>
-            <a ng-href="#/create-campaign" type="button" class="btn btn-primary header-button">Créer campagne</a>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a ng-href="#/create-campaign"  title="Créer campagne">
+                  <span class="glyphicon glyphicon-plus"></span>
+                  <span class="glyphicon glyphicon-modal-window"></span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -71,6 +79,8 @@
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-sweetalert/SweetAlert.min.js"></script>
+    <script src="../bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -80,6 +90,9 @@
     <script src="scripts/controllers/CreateCtrl.js"></script>
     <script src="scripts/controllers/ManageCampaignCtrl.js"></script>
     <script src="scripts/controllers/ManageBroadcastListCtrl.js"></script>
+    <script src="scripts/controllers/DetailCampaignCtrl.js"></script>
+    <script src="scripts/controllers/templates/ManageTemplateCtrl.js"></script>
+    <script src="scripts/controllers/templates/CreateTemplateCtrl.js"></script>
     <!-- endbuild -->
 </body>
 </html>

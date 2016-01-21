@@ -30,9 +30,10 @@
                   </table>
                 </td>
                 <td class="btn-campaigne">
-                    <a href='/#/' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
+                    <!-- <a ng-click="detailCampaign(campaign._id)" class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a> -->
+                    <a ng-href='#/detail-campaign/{{campaign._id}}' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
                     <a href='/#/' class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
-                    <a href='/#/' class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a ng-click="deleteCampaigns(campaign._id)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
             </tbody>
