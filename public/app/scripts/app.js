@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+ angular
   .module('newsletterApp', [
     'ngAnimate',
     'ngCookies',
@@ -36,6 +36,10 @@ angular
         templateUrl: 'views/manage_group.html',
         controller: 'ManageGroupCtrl'
       })
+      .when('/detail-campaign/:campaign_id',{
+         templateUrl: 'views/detail_campaign.html',
+         controller: 'DetailCampaignCtrl'
+       })
       .when('/manage-template', {
         templateUrl: 'views/templates/manage_template.html',
         controller: 'ManageTemplateCtrl'
