@@ -26,16 +26,16 @@
 
        
          $scope.updateCampaign = function(){
-                  $http.put('/api/updateCampaigns/' + $routeParams.campaign_id, $scope.detailCampaign)
-                    .success(function(data) {
-                      $scope.detailCampaign = {}; 
-                      $scope.campaigns = data;
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
-                    $location.path("/manage-campaign");
-                }
+            $http.put('/api/updateCampaigns/' + $routeParams.campaign_id, $scope.detailCampaign)
+              .success(function(data) {
+                $scope.detailCampaign = {}; 
+                $scope.campaigns = data;
+              })
+              .error(function(data) {
+                  console.log('Error: ' + data);
+              });
+              $location.path("/manage-campaign");
+          }
 
 
 

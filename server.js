@@ -128,7 +128,7 @@
     });
 
 // create campaign
-    app.put('/api/campaigns', function(req, res) {
+    app.post('/api/campaigns', function(req, res) {
         // create a email, information comes from AJAX request from Angular@
         Campaign.create({
           title : req.body.title,
