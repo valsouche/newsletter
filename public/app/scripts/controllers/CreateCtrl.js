@@ -39,4 +39,29 @@ angular.module('newsletterApp')
         });
         $location.path("/manage-campaign");
     };
+
+    //Get templates
+    $http.get('/api/templates')
+
+      .success(function(data) {
+        $scope.templates = data;
+        console.log(data);
+      })
+
+      .error(function(data) {
+        console.log('Error: ' + data);
+      });
+
+    //Get broadcastList
+    $http.get('/api/broadcast-lists')
+
+      .success( function(data) {
+        $scope.broadcastLists = data;
+        console.log(data);
+      })
+
+      .error( function(data) {
+        console.log('Error: ' + data);
+      });
+    
   });

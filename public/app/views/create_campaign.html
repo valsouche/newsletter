@@ -19,13 +19,13 @@
       <div class="col-md-6 col-sm-12">
         <label for="templates">Selectionner un template</label>
         <select id="templates" class="form-control">
-          <option> Templates</option>
+          <option ng-repeat="tpl in templates"> {{tpl.title}}</option>
         </select>
       </div>
       <div class="col-md-6 col-sm-12">
         <label for="diffusionList">Selectionner une liste de contact</label>
         <select id="diffusionList" class="form-control">
-          <option>Listes</option>
+          <option ng-repeat="bl in broadcastLists">{{bl.title}}</option>
         </select>
       </div>
     </div>
