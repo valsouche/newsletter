@@ -7,7 +7,7 @@
 </div>
 
 
-  <div class="container">
+  <div class="container" id="datail_form">
 
   	<form class="form-horizontal">
 	  <div class="form-group">
@@ -16,7 +16,7 @@
 	      <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title" >
 
 	    </div>
-	    <label for="campaignDescribe" class="col-sm-1 control-label">Description: </label>
+	    <label for="campaignDescribe" class="col-sm-2 control-label">Description: </label>
 	    <div class="col-sm-4">
 	      <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre campaign" ng-model="detailCampaign.describe" ></textarea>
 	    </div>
@@ -24,22 +24,21 @@
 
 	  <div class="form-group">
 	    <label for="templates" class="col-sm-1 control-label">Templates: </label>
-	    <div class="col-sm-9">
+	    <div class="col-sm-4">
 	      <select id="templates" class="form-control" ng-model="detailCampaign.templete">
 	          <option> Templates</option>
 	        </select>
 	    </div>
-	  </div>
-	  <div class="form-group">
-	    <label for="diffusionList" class="col-sm-1 control-label">List de diffusion: </label>
-	    <div class="col-sm-9">
+	    <label for="diffusionList" class="col-sm-2 control-label">List de diffusion: </label>
+	    <div class="col-sm-4">
             <select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
 	          <option>Listes</option>
 	        </select>
 	    </div>
 	  </div>
+	  
 	  <div class="form-group">
-	    <div class="col-sm-offset-2 col-sm-10">
+	    <div class="col-sm-offset-9 col-sm-4">
 	    	<a class='btn'  ng-click="updateCampaign()" title="Enregister"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a>
 	    	<a href='/#manage-campaign' class='btn'  title="Retourner"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
 	    </div>
