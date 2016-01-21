@@ -8,8 +8,6 @@
         <h1>Liste de diffusion</h1>
         
         <p>Créez et gérez vos contacts sur notre page.</p>
-        
-        <a href="#/create-campaign" class="btn">Nouveau campagne</a>
     
     </div>
     
@@ -23,21 +21,19 @@
         
     <div class="container">
 
-    <!-- Broadcast list name -->
+        <!-- Broadcast list name -->
 
-    <h3>Nom de la liste</h3>
+        <h3>Nom de la liste</h3>
 
-    <div>
-        <label for="broadcastListTitle">Nom de la liste</label>
+        <div>
+            <label for="broadcastListTitle">Nom de la liste</label>
 
-        <input type="text" 
-               class="form-control" 
-               id="broadcastListTitle" 
-               placeholder="Nom de la liste" 
-               ng-model="broadcastList.title" />
-    </div>
-
-            {{broadcastList.title}}
+            <input type="text" 
+                   class="form-control" 
+                   id="broadcastListTitle" 
+                   placeholder="Nom de la liste" 
+                   ng-model="broadcastList.title" />
+        </div>
 
     </div>
         
@@ -48,11 +44,18 @@
     <div class="row">
         
         <div class="container">
+            
+            <button type="submit" 
+                    class="btn btn-default form-button" 
+                    ng-click="update(broadcastList._id, broadcastList.emails)">
+                Modifier
+            </button>
         
             <button type="submit" 
                     class="btn btn-default form-button" 
+                    ng-if="{{! broadcastListCurrentlyUpdating}}"
                     ng-click="create()">
-                Enregistrer
+                Créer
             </button>
         
         </div>

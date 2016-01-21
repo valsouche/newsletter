@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -40,11 +40,11 @@ angular
         templateUrl: 'views/broadcast-list/manage.html',
         controller: 'ManageBroadcastListCtrl'
       })
-      .when('/liste-de-diffusion-manage', {
+      .when('/liste-de-diffusion-creation', {
         templateUrl: 'views/broadcast-list/create.html',
         controller: 'ManageBroadcastListCtrl'
       })
-      .when('/liste-de-diffusion-manage/:title', {
+      .when('/liste-de-diffusion-modification/:title', {
         templateUrl: 'views/broadcast-list/create.html',
         controller: 'ManageBroadcastListCtrl'
       })

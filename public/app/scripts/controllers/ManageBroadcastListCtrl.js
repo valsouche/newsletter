@@ -13,62 +13,50 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
       
     // Broadcast List Object
     
+    $scope.broadcastList = {};
     $scope.broadcastLists = {};
+    $scope.broadcastListCurrentlyUpdating = false;
     
+    //
     
-    $scope.broadcastList = function() {
+    $scope.init = function() {
         
-        $scope.broadcastList.title = $routeParams.title;
+        var title = $routeParams.title;
         
-        // modification
+        // update the current item with the title
         
-        if ($routeParams.title !== null) {
+        if (title !== undefined) {
             
-            $scope.broadcastList = function() {
-                    
-                    $http.get('/api/broadcast-lists/title/' + $routeParams.title)
-            
-                        .success( function(data) {
-                          $scope.broadcastLists = data;
-                          console.log(data);
-                          return data;
-                        })
+            setByTitle( title );
 
-                        .error( function(data) {
-                          console.log('Error: ' + data);
-                          return {};
-                        })
-                    };
+            $scope.broadcastListCurrentlyUpdating = true;
         }
-        
-        // creation
-        
         else {
-            $scope.broadcastList = {};
+            $scope.broadcastListCurrentlyUpdating = false;
         }
         
     };
     
-    
-    function getFromId($id) {
-        
-    }
+    $scope.init();
     
     /**
+     * @param title
+     *      
      * 
-     * Load the broadcast id in the view 
-     * 
-     * @param {type} bl
-     * 
+     * @returns {undefined}
      */
-    
-    $scope.modify = function(data) {
-        console.log(data);
         
-        $scope.dlId = data._id;
-        $scope.broadcastList = data;
-        
-        $location.path('/liste-de-diffusion-creation');
+    function setByTitle(title) {
+        $http.get('/api/broadcast-lists/title/' + title)
+            .success( function(data) {
+                console.log(data);
+                $scope.broadcastList = data[0];
+            })
+
+            .error( function(data) {
+                console.log('Error: ' + data);
+            });
+            
     }
     
     /**
@@ -122,9 +110,14 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         });
     };
     
-    // modify a broadcast list
+    /**
+     * 
+     * @param {type} id
+     * @param {type} emails
+     * @returns {undefined}
+     */
     
-    $scope.edit = function(id, emails) {
+    $scope.update = function(id, emails) {
       $http.put('/api/broadcast-lists/update/' + id + '/' + emails)
       
         .success( function(data) {
@@ -137,6 +130,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         .error( function(data) {
             console.log('Error: ' + data);
         });
+        
+        $location.path('/liste-de-diffusion');
     };
     
     // remove a broadcast list
