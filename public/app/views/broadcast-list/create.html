@@ -47,13 +47,14 @@
             
             <button type="submit" 
                     class="btn btn-default form-button" 
+                    ng-if="broadcastListCurrentlyUpdating"
                     ng-click="update(broadcastList._id, broadcastList.emails)">
                 Modifier
             </button>
         
             <button type="submit" 
                     class="btn btn-default form-button" 
-                    ng-if="{{! broadcastListCurrentlyUpdating}}"
+                    ng-if="! broadcastListCurrentlyUpdating"
                     ng-click="create()">
                 Créer
             </button>

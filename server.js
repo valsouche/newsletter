@@ -111,22 +111,6 @@
         );
         
     });
-    
-    // Update templates by ID
-        app.put('/api/templates/details/:id', function(req, res) {
-          Template.findOne({ _id: req.params.id }, function (err, template) {
-            // if (err) {
-            //   req.send(err)
-            // }
-            template.title = req.body.title;
-            template.describe = req.body.describe;
-            template.content = req.body.content;
-            template.save(function() {
-              res.send("Template Updated !");
-            });
-          });
-        });
-
 
     // create email and send back all emails after creation
     
@@ -154,12 +138,21 @@
         BroadcastList.remove({
             _id : req.params.id
         }, function(err) {
+            
             if(err) {
-              res.send(err);
+                res.send(err);
             }
-            else {
-                res.redirect("/manage-group");
-            }
+            
+            // update
+            
+            BroadcastList.find(
+                function(err, broadcast) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    res.json(broadcast);
+                }
+            );
         });
     });
 

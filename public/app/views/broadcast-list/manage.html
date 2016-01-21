@@ -1,4 +1,5 @@
 
+
 <!-- Header -->
 
 <div class="container-fluid bs-docs-header" id="campaigne_page_title">
@@ -9,7 +10,7 @@
         
         <p>Créez et gérez vos contacts.</p>
         
-        <a href="#/liste-de-diffusion-manage" class="btn">Nouvelle liste</a>
+        <a href="#/liste-de-diffusion-creation" class="btn">Nouvelle liste</a>
     
     </div>
     
@@ -19,7 +20,7 @@
     
     <!-- Emails list --> 
     
-    <div class="container" id="broadcastList_emails">
+    <div class="container" id="campaigne_page_list">
         
         <h3>Mes emails ( {{ broadcastLists.length }} )</h3>
         
@@ -56,15 +57,18 @@
                   <!-- -->
 
                   <td class="btn-campaigne">
-                        <a href='/#/' class='btn'  title="Modifier"><span class="glyphicon glyphicon-th-list"></span></a>
-                        
-                        <a href="#/liste-de-diffusion-modification/{{bl.title}}" class="btn">Modifier</a>
-                        
-                        <button type="submit" 
-                              class="glyphicon glyphicon-trash"
-                              ng-click="remove(bl._id)">
-                            Supprimer
-                        </button>
+                      
+                        <a href="#/liste-de-diffusion-modification/{{bl.title}}" 
+                           class="btn"
+                           title="Modifier">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+
+                        <a class="btn supprimer"
+                           title="Supprimer"
+                           ng-click="remove(bl._id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
                       
                   </td>
 

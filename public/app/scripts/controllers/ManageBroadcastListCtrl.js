@@ -76,8 +76,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
           
         // update the results
           
-        $scope.broadcastLists.push( data );
-        $scope.$apply();
+        $scope.broadcastLists = data;
+        //$scope.$apply();
     }
     
     // get all broadcast lists
@@ -108,6 +108,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         .error( function(data) {
             console.log('Error: ' + data);
         });
+        
+        $location.path('/liste-de-diffusion');
     };
     
     /**
