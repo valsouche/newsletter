@@ -32,8 +32,8 @@
 .bs-docs-header{
   background: #1A2937;
   color: #FFF;
-  padding: 20px;
-  margin-
+  padding: 45px;
+  margin-bottom: 50px;
   top: 0px;
 }
 
@@ -77,7 +77,7 @@
   padding-left: 2%;
 }
 #campaigne_page_list .btn-campaigne{
-  vertical-align: bottom; 
+  vertical-align: bottom;
 }
 #campaigne_page_list .btn-campaigne .btn{
   color: #1A2937;
@@ -98,7 +98,10 @@
     border: 2px solid red;
     background-color: red;
 }
+<<<<<<< HEAD
 /**********************************************/
 /* page detail campaign */
 
 
+=======
+>>>>>>> master

@@ -30,6 +30,12 @@
       passwd : String
     });
 
+    var Template = mongoose.model('Templates', {
+      title: String,
+      describe: String,
+      content: String
+    });
+
     var Campaign = mongoose.model('Campaigns', {
       title : String,
       describe : String,
@@ -71,7 +77,7 @@
             Email.find(function(err, emails) {
                 if(err) {
                   res.send(err);
-                }    
+                }
                 res.json(emails);
             });
         });
@@ -90,7 +96,7 @@
             Email.find(function(err, emails) {
                 if(err) {
                   res.send(err);
-                }    
+                }
                 res.json(emails);
             });
         });
@@ -154,6 +160,7 @@
         });
     });
 
+<<<<<<< HEAD
     //update a campagne
     app.put('/api/updateCampaigns/:campaign_id',function(req,res){
       Campaign.findOne({
@@ -172,11 +179,87 @@
 
       })
     })
+=======
+    // Templates -------------------------------------------------------------
+
+      // get all Templates
+      app.get('/api/templates', function(req, res) {
+          // use mongoose to get all emails in the database
+          Template.find(function(err, templates) {
+              // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+              if(err) {
+                res.send(err)
+              }
+              res.json(templates); // return all emails in JSON format
+          });
+      });
+
+      // get templates by ID
+        app.get('/api/templates/details/:id', function(req, res) {
+            // use mongoose to get all emails in the database
+            Template.find({
+              _id: req.params.id
+            }, function(err, templates) {
+                // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+                if(err) {
+                  res.send(err)
+                }
+                res.json(templates); // return all emails in JSON format
+            });
+        });
+
+        // Update templates by ID
+        app.put('/api/templates/details/:id', function(req, res) {
+          Template.findOne({ _id: req.params.id }, function (err, template) {
+            // if (err) {
+            //   req.send(err)
+            // }
+            template.title = req.body.title;
+            template.describe = req.body.describe;
+            template.content = req.body.content;
+            template.save(function() {
+              res.send("Template Updated !");
+            });
+          });
+        });
+
+      // create template
+      app.post('/api/templates', function(req, res) {
+          // create a email, information comes from AJAX request from Angular@
+          Template.create({
+            title: req.body.title,
+            describe: req.body.describe,
+            content: req.body.content
+          }, function(err) {
+              if(err) {
+                res.send(err);
+              }
+          });
+      });
+
+      // delete a template
+      app.delete('/api/templates/remove/:template_id', function(req, res) {
+          Template.remove({
+            _id : req.params.template_id
+          }, function(err, template) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            Template.find(function(err, templates) {
+                if (err)
+                    res.send(err)
+                res.json(templates);
+            });
+        });
+    });
+
+>>>>>>> master
 
 
  // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
-   
+
     // listen (start app with node server.js) ======================================
     app.listen(8080);
     console.log("Newsletter App started on :8080");
