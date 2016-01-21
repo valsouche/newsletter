@@ -1,0 +1,86 @@
+
+<!-- Header -->
+
+<div class="container-fluid bs-docs-header" id="campaigne_page_title">
+    
+    <div class="container">
+        
+        <h1>Liste de diffusion</h1>
+        
+        <p>Créez et gérez vos contacts.</p>
+        
+        <a href="#/liste-de-diffusion-manage" class="btn">Nouvelle liste</a>
+    
+    </div>
+    
+</div>
+
+<form>    
+    
+    <!-- Emails list --> 
+    
+    <div class="container" id="broadcastList_emails">
+        
+        <h3>Mes emails ( {{ broadcastLists.length }} )</h3>
+        
+        <table class="table table-hover">
+            
+            <!-- Header -->
+            
+            <thead>
+                <tr>
+                    <th>Adresse e-mail</th>
+                    
+                    <th>Action</th>
+                </tr>
+            </thead>
+            
+            <!-- Content -->
+            
+            <tbody id="campaigne_list">
+                
+                <tr ng-repeat="bl in broadcastLists">
+
+                    <!-- -->
+
+                  <td>{{bl.title}}</td>
+                  
+                  <td>
+                    <table>
+                        <tr>
+                            <td class="title-campaigne">{{bl.emails.title}}</td>
+                        </tr>
+                    </table>
+                  </td>
+
+                  <!-- -->
+
+                  <td class="btn-campaigne">
+                        <a href='/#/' class='btn'  title="Modifier"><span class="glyphicon glyphicon-th-list"></span></a>
+                      
+                        <button type="submit" 
+                              class="glyphicon glyphicon-trash"
+                              ng-click="modify(bl)">
+                            Modifier
+                        </button>
+                        
+                        <a href="#/liste-de-diffusion-manage/{{bl.title}}" class="btn">Modifier</a>
+                        
+                        
+                        <button type="submit" 
+                              class="glyphicon glyphicon-trash"
+                              ng-click="remove(bl._id)">
+                            Supprimer
+                        </button>
+                      
+                  </td>
+
+                </tr>
+                
+            </tbody>
+            
+          </table>
+    
+    </div>
+    
+</form>

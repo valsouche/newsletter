@@ -1,0 +1,60 @@
+
+<!-- Header -->
+
+<div class="container-fluid bs-docs-header" id="campaigne_page_title">
+    
+    <div class="container">
+        
+        <h1>Liste de diffusion</h1>
+        
+        <p>Créez et gérez vos contacts sur notre page.</p>
+        
+        <a href="#/create-campaign" class="btn">Nouveau campagne</a>
+    
+    </div>
+    
+</div>
+
+<!-- Creation / Modification -->
+
+    <!-- Inputs -->
+    
+<div class="row">
+        
+    <div class="container">
+
+    <!-- Broadcast list name -->
+
+    <h3>Nom de la liste</h3>
+
+    <div>
+        <label for="broadcastListTitle">Nom de la liste</label>
+
+        <input type="text" 
+               class="form-control" 
+               id="broadcastListTitle" 
+               placeholder="Nom de la liste" 
+               ng-model="broadcastList.title" />
+    </div>
+
+            {{broadcastList.title}}
+
+    </div>
+        
+</div>
+    
+    <!-- Saving -->
+
+    <div class="row">
+        
+        <div class="container">
+        
+            <button type="submit" 
+                    class="btn btn-default form-button" 
+                    ng-click="create()">
+                Enregistrer
+            </button>
+        
+        </div>
+    
+    </div>
