@@ -117,8 +117,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
      * @returns {undefined}
      */
     
-    $scope.update = function(id, emails) {
-      $http.put('/api/broadcast-lists/update/' + id + '/' + emails)
+    $scope.update = function(id) {
+      $http.put('/api/broadcast-lists/update/' + id, $scope.broadcastList)
       
         .success( function(data) {
             

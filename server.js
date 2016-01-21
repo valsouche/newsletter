@@ -90,25 +90,42 @@
             res.json(broadcastLists); // return all emails in JSON format
         });
     });
+    
+    /**
+     * 
+     * @param {type} param1
+     * @param {type} param2
+     */
 
-    app.put('/api/broadcast-lists/update/:id/:email', function(req, res) {
+    app.put('/api/broadcast-lists/update/:id', function(req, res) {
         
-        BroadcastList.findByIdAndUpdate(
-                
-                {
-                    _id : req.params.id,
-                    emails : req.params.email
-                },
-                
-                function(err, broadcastLists) {
-                    if (err) throw err;
-
-                    // we have the updated user returned to us
-                    console.log(user);
-                }
+        BroadcastList.findOne( { _id : req.params.id }, 
+            function(err, broadcastList) {
+                    broadcastList.title = req.body.title,
+                    broadcastList.emails = req.body.emails;
+                    
+                    broadcastList.save(function() {
+                        res.send("awesome " + req.body.title);
+                    });
+            }
         );
         
     });
+    
+    // Update templates by ID
+        app.put('/api/templates/details/:id', function(req, res) {
+          Template.findOne({ _id: req.params.id }, function (err, template) {
+            // if (err) {
+            //   req.send(err)
+            // }
+            template.title = req.body.title;
+            template.describe = req.body.describe;
+            template.content = req.body.content;
+            template.save(function() {
+              res.send("Template Updated !");
+            });
+          });
+        });
 
 
     // create email and send back all emails after creation
