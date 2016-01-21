@@ -45,8 +45,8 @@
       status : String,
     });
 
-    // routes ======================================================================
 
+    // routes ======================================================================
 
     // api ---------------------------------------------------------------------
     // get all emails
@@ -104,7 +104,7 @@
 
   // Campaigns -------------------------------------------------------------
 
-  // get all Campaigns
+    // get all Campaigns
     app.get('/api/campaigns', function(req, res) {
         // use mongoose to get all emails in the database
         Campaign.find(function(err, campaigns) {
@@ -116,7 +116,7 @@
         });
     });
 
-// create campaign
+    // create campaign
     app.post('/api/campaigns', function(req, res) {
         // create a email, information comes from AJAX request from Angular@
         Campaign.create({
@@ -172,13 +172,17 @@
 
         // Update templates by ID
         app.put('/api/templates/details/:id', function(req, res) {
-          Template.findOne({ _id: req.params.id }, function (err, template) {
-            // if (err) {
-            //   req.send(err)
-            // }
+          Template.findOne({
+            _id: req.params.id
+          }, function (err, template) {
+                if (err) {
+                  req.send(err)
+                }
+
             template.title = req.body.title;
             template.describe = req.body.describe;
             template.content = req.body.content;
+
             template.save(function() {
               res.send("Template Updated !");
             });
@@ -204,23 +208,22 @@
           Template.remove({
             _id : req.params.template_id
           }, function(err, template) {
-            if (err)
-                res.send(err);
-
+            if (err) {
+              res.send(err);
+            }
             // get and return all the todos after you create another
             Template.find(function(err, templates) {
-                if (err)
-                    res.send(err)
+                if (err) {
+                  res.send(err)
+                }
                 res.json(templates);
             });
         });
     });
 
-
-
- // application -------------------------------------------------------------
+  // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
 
     // listen (start app with node server.js) ======================================
     app.listen(8080);
-    console.log("Newsletter App started on :8080");
+    console.log("Firemail App started on :8080");
