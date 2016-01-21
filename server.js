@@ -20,15 +20,30 @@
     app.use(methodOverride());
 
     // define model =================
-    var Email = mongoose.model('Emails', {
-      text : String
+    
+    // a broadcast list
+    
+    var BroadcastList = mongoose.model('BroadcastLists', {
+        title : String,
+        
+        // address
+        // isDeleted
+        
+        emails: {
+            address : String,
+            deleted : Boolean
+        }
     });
+    
+    //
 
     var User = mongoose.model('Users', {
       username : String,
       email : String,
       passwd : String
     });
+    
+    //
 
     var Template = mongoose.model('Templates', {
       title: String,
@@ -42,7 +57,7 @@
       template : String,
       contact : String,
       creator : String,
-      status : String,
+      status : String
     });
 
 
@@ -50,55 +65,100 @@
 
     // api ---------------------------------------------------------------------
     // get all emails
-    app.get('/api/emails', function(req, res) {
+    app.get('/api/broadcast-lists', function(req, res) {
         // use mongoose to get all emails in the database
-        Email.find(function(err, emails) {
+        BroadcastList.find(function(err, broadcastLists) {
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if(err) {
               res.send(err)
             }
-            res.json(emails); // return all emails in JSON format
+            res.json(broadcastLists); // return all emails in JSON format
         });
+    });
+    
+    /**
+     * Example to get a specific entity 
+    **/
+    
+    app.get('/api/broadcast-lists/title/:title', function(req, res) {
+
+        BroadcastList.find(
+                
+                {title : req.params.title},
+        
+                function(err, broadcastLists) {
+
+            if (err) {
+              res.send(err)
+            }
+
+            res.json(broadcastLists); // return all emails in JSON format
+        });
+    });
+    
+    /**
+     * 
+     * @param {type} param1
+     * @param {type} param2
+     */
+
+    app.put('/api/broadcast-lists/update/:id', function(req, res) {
+        
+        BroadcastList.findOne( { _id : req.params.id }, 
+            function(err, broadcastList) {
+                    broadcastList.title = req.body.title,
+                    broadcastList.emails = req.body.emails;
+                    
+                    broadcastList.save(function() {
+                        res.send("awesome " + req.body.title);
+                    });
+            }
+        );
+        
     });
 
     // create email and send back all emails after creation
-    app.post('/api/emails', function(req, res) {
+    
+    app.post('/api/broadcast-lists', function(req, res) {
 
         // create a email, information comes from AJAX request from Angular@
-        Email.create({
-          text : req.body.text,
-          done : false
-        }, function(err, email) {
+        
+        BroadcastList.create({
+           title: req.body.title,
+           emails: req.body.emails 
+        }, function(err) {
             if(err) {
               res.send(err);
             }
-            // get and return all the emails after you create another
-            Email.find(function(err, emails) {
-                if(err) {
-                  res.send(err);
-                }
-                res.json(emails);
-            });
+            else {
+                res.redirect("/manage-group");
+            }
         });
+        
     });
 
-    // delete an email
-    app.delete('/api/emails/:email_id', function(req, res) {
-        Email.remove({
-            _id : req.params.email_id
-        }, function(err, Email) {
+    // delete a broadcast list
+    
+    app.delete('/api/broadcast-lists/remove/:id', function(req, res) {
+        BroadcastList.remove({
+            _id : req.params.id
+        }, function(err) {
+            
             if(err) {
-              res.send(err);
+                res.send(err);
             }
 
-            // get and return all the emails after you create another
-            Email.find(function(err, emails) {
-                if(err) {
-                  res.send(err);
+            // update
+            
+            BroadcastList.find(
+                function(err, broadcast) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    res.json(broadcast);
                 }
-                res.json(emails);
-            });
+            );
         });
     });
 

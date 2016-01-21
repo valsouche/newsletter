@@ -32,6 +32,21 @@
         templateUrl: 'views/manage_campaign.html',
         controller: 'ManageCampaignCtrl'
       })
+
+      // Liste de diffusion
+      
+      .when('/liste-de-diffusion', {
+        templateUrl: 'views/broadcast-list/manage.html',
+        controller: 'ManageBroadcastListCtrl'
+      })
+      .when('/liste-de-diffusion-creation', {
+        templateUrl: 'views/broadcast-list/create.html',
+        controller: 'ManageBroadcastListCtrl'
+      })
+      .when('/liste-de-diffusion-modification/:title', {
+        templateUrl: 'views/broadcast-list/create.html',
+        controller: 'ManageBroadcastListCtrl'
+      })
       .when('/manage-group', {
         templateUrl: 'views/manage_group.html',
         controller: 'ManageGroupCtrl'

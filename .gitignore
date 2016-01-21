@@ -7,4 +7,5 @@ public/bower_components
 /bower_components
 public/.bower-cache/
 public/.bower-registry/
+/nbproject/private/
 .idea/

@@ -1,0 +1,83 @@
+
+
+<!-- Header -->
+
+<div class="container-fluid bs-docs-header" id="campaigne_page_title">
+    
+    <div class="container">
+        
+        <h1>Liste de diffusion</h1>
+        
+        <p>Créez et gérez vos contacts.</p>
+        
+        <a href="#/liste-de-diffusion-creation" class="btn">Nouvelle liste</a>
+    
+    </div>
+    
+</div>
+
+<form>    
+    
+    <!-- Emails list --> 
+    
+    <div class="container" id="campaigne_page_list">
+        
+        <h3>Mes emails ( {{ broadcastLists.length }} )</h3>
+        
+        <table class="table table-hover">
+            
+            <!-- Header -->
+            
+            <thead>
+                <tr>
+                    <th>Adresse e-mail</th>
+                    
+                    <th>Action</th>
+                </tr>
+            </thead>
+            
+            <!-- Content -->
+            
+            <tbody id="campaigne_list">
+                
+                <tr ng-repeat="bl in broadcastLists">
+
+                    <!-- -->
+
+                  <td>{{bl.title}}</td>
+                  
+                  <td>
+                    <table>
+                        <tr>
+                            <td class="title-campaigne">{{bl.emails.title}}</td>
+                        </tr>
+                    </table>
+                  </td>
+
+                  <!-- -->
+
+                  <td class="btn-campaigne">
+                      
+                        <a href="#/liste-de-diffusion-modification/{{bl.title}}" 
+                           class="btn"
+                           title="Modifier">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+
+                        <a class="btn supprimer"
+                           title="Supprimer"
+                           ng-click="remove(bl._id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                      
+                  </td>
+
+                </tr>
+                
+            </tbody>
+            
+          </table>
+    
+    </div>
+    
+</form>
