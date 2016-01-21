@@ -8,7 +8,7 @@
  * Controller of the newsletterApp
  */
 angular.module('newsletterApp')
-  .controller('ManageCampaignCtrl', function ($scope, $http) {
+  .controller('ManageCampaignCtrl', function ($scope, $http,SweetAlert) {
      $scope.formData = {};
 
     // when landing on the page, get all todos and show them
@@ -23,14 +23,29 @@ angular.module('newsletterApp')
 
     // delete a todo after checking it
     $scope.deleteCampaigns = function(id) {
-        $http.delete('/api/deleteCampaigns/' + id)
-            .success(function(data) {
-                $scope.campaigns = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });
+        SweetAlert.swal({
+          title: "Etes vous sur ?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",confirmButtonText: "Oui, supprimer !",
+          cancelButtonText: "Nooon !",
+          closeOnConfirm: false,
+          closeOnCancel: false },
+
+          function(isConfirm){
+           if (isConfirm) {
+              $http.delete('/api/deleteCampaigns/' + id)
+                .success(function(data) {
+                  $scope.campaigns = data;
+                })
+                .error(function(data) {
+                  console.log('Error: ' + data);
+                });
+                SweetAlert.swal("Supprimé !", "Votre campagne a bien été supprimée", "success");
+           } else {
+              SweetAlert.swal("Annulé !", "Oufff :)", "error");
+           }
+        });
     };
-    
+
   });

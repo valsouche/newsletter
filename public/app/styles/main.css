@@ -98,3 +98,16 @@
     border: 2px solid red;
     background-color: red;
 }
+
+/**********************************************/
+/* page detail campaign */
+#datail_form .btn{
+  color: #1A2937;
+  background-color: #fff;
+  border-color: #000;
+  margin-left: 2%;
+}
+#datail_form .btn:hover{
+  color: #fff;
+  background-color: #1A2937;
+}

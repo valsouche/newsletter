@@ -8,7 +8,7 @@
  * Controller of the newsletterApp
  */
 angular.module('newsletterApp')
-  .controller('CreateCtrl', function ($scope, $http,$location) {
+  .controller('CreateCtrl', function ($scope, $http,$location,SweetAlert) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -37,6 +37,7 @@ angular.module('newsletterApp')
         .error(function(data) {
             console.log('Error: ' + data);
         });
+        SweetAlert.swal("Great !", "Votre campagne a bien été créé !", "s");
         $location.path("/manage-campaign");
     };
 
