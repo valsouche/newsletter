@@ -40,16 +40,6 @@
          templateUrl: 'views/detail_campaign.html',
          controller: 'DetailCampaignCtrl'
        })
-      // .when('/manage-template', {
-      //   templateUrl: 'views/manage_template.html',
-      //   controller: 'ManageTemplateCtrl',
-      //   activetab: 'manage-template'
-      // })
-      // .when('/create-template', {
-      //   templateUrl: 'views/create_template.html',
-      //   controller: 'CreateTemplateCtrl',
-      //   activetab: 'create-template'
-      // })
       .when('/manage-template', {
         templateUrl: 'views/templates/manage_template.html',
         controller: 'ManageTemplateCtrl'
