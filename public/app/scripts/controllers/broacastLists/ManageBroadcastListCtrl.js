@@ -9,7 +9,7 @@
  * # MainCtrl
  * Controller of the newsletterApp
  */
-angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function ($scope, $http, $location, $routeParams) {
+angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function ($scope, $http, $location, $routeParams, SweetAlert) {
       
     // Broadcast List Object
     
@@ -96,22 +96,23 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
     // Create a new broadcast list
     
     $scope.create = function() {
-      $http.post('/api/broadcast-lists', $scope.broadcastList)
-      
-        .success( function(data) {
-            
+
+        $http.post('/api/broadcast-lists', $scope.broadcastList)
+
+          .success(function (data) {
+
             updateAll(data);
-    
+
             console.log(data);
-        })
-        
-        .error( function(data) {
+          })
+
+          .error(function (data) {
             console.log('Error: ' + data);
-        });
-        
+          });
+        SweetAlert.swal("Great !", "Votre liste de diffusion a bien été créé !", "success");
         $location.path('/liste-de-diffusion');
     };
-    
+
     /**
      * 
      * @param {type} id
@@ -120,36 +121,74 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
      */
     
     $scope.update = function(id) {
-      $http.put('/api/broadcast-lists/update/' + id, $scope.broadcastList)
-      
-        .success( function(data) {
-            
-            updateAll(data);
-            
-            console.log(data);
-        })
-        
-        .error( function(data) {
-            console.log('Error: ' + data);
+      SweetAlert.swal({
+          title: "Sûr de vous ?",
+          text: "Vous allez enregister vos modifications.",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55", confirmButtonText: "Oui !",
+          cancelButtonText: "Non !",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+
+        function (isConfirm) {
+          if (isConfirm) {
+            $http.put('/api/broadcast-lists/update/' + id, $scope.broadcastList)
+
+              .success( function(data) {
+
+                  updateAll(data);
+
+                  console.log(data);
+              })
+
+              .error( function(data) {
+                  console.log('Error: ' + data);
+              });
+
+              $location.path('/liste-de-diffusion');
+              SweetAlert.swal("Génial", "Votre liste de diffusion est à jour", "success");
+
+          } else {
+            SweetAlert.swal("Annulé", "Je garde l'ancienne :)", "error");
+          }
         });
-        
-        $location.path('/liste-de-diffusion');
     };
     
     // remove a broadcast list
     
     $scope.remove = function(id) {
-      $http.delete('/api/broadcast-lists/remove/' + id)
-      
-        .success( function(data) {
-            
-            updateAll(data);
-            
-            console.log(data);
-        })
-        
-        .error( function(data) {
-            console.log('Error: ' + data);
+      SweetAlert.swal({
+          title: "Sûr de vous ?",
+          text: "Vous êtes sur le point de supprimer votre liste de diffusion",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55", confirmButtonText: "Oui !",
+          cancelButtonText: "Non !",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+
+        function (isConfirm) {
+          if (isConfirm) {
+            $http.delete('/api/broadcast-lists/remove/' + id)
+
+              .success( function(data) {
+
+                  updateAll(data);
+
+                  console.log(data);
+              })
+
+              .error( function(data) {
+                  console.log('Error: ' + data);
+              });
+            SweetAlert.swal("C'est fait", "Votre liste de diffusion est supprimée", "success");
+
+          } else {
+            SweetAlert.swal("Annulé", "Je la conserve :)", "error");
+          }
         });
     };
 

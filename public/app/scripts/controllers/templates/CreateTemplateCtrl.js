@@ -25,7 +25,7 @@ angular.module('newsletterApp')
             console.log('Error: ' + data);
         });
         
-        SweetAlert.swal("Great !", "Votre template à bien été créé !", "s");
+        SweetAlert.swal("Great !", "Votre template a bien été créé !", "success");
         $location.path("/manage-template");
     };
 
