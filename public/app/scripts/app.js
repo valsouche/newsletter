@@ -16,8 +16,7 @@
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'oitozero.ngSweetAlert',
-    'textAngular'
+    'oitozero.ngSweetAlert'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -26,11 +25,11 @@
         controller: 'HomeCtrl'
       })
       .when('/create-campaign', {
-        templateUrl: 'views/create_campaign.html',
+        templateUrl: '../views/campaigns/create_campaign.html',
         controller: 'CreateCtrl'
       })
       .when('/manage-campaign', {
-        templateUrl: 'views/manage_campaign.html',
+        templateUrl: '../views/campaigns/manage_campaign.html',
         controller: 'ManageCampaignCtrl'
       })
 
@@ -49,7 +48,7 @@
         controller: 'ManageBroadcastListCtrl'
       })
       .when('/detail-campaign/:campaign_id',{
-         templateUrl: 'views/detail_campaign.html',
+         templateUrl: '../views/campaigns/detail_campaign.html',
          controller: 'DetailCampaignCtrl'
        })
       .when('/manage-template', {
