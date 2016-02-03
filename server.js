@@ -239,6 +239,19 @@
 
       })
     })
+    //verification title unique
+    app.get('/api/titleCampagneUnique/:campaign_title',function(req,res){
+      Campaign.find({title:req.params.campaign_title} , function(err,campaign) {
+            if(err) {
+              res.send(err);
+            }
+            if(campaign.length!=0){
+              res.send(false);
+            }else{
+              res.send(true);
+            }
+          });
+    })
     // Templates -------------------------------------------------------------
 
       // get all Templates
