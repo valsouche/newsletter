@@ -26,6 +26,13 @@
     color: #fff;
     background-color: #1A2937;
 }
+.form-error{
+  font-style: italic;
+  color: red;
+}
+input.ng-invalid {
+  border: 1px solid red;
+}
 
 /*****************************************/
 /*page header/page title*/
