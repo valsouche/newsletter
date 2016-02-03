@@ -9,8 +9,9 @@
     <div class="container">
       <div class="form-group col-md-6 col-sm-12">
         <label for="campaignTitle">Titre</label>
-        <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne" ng-model="dataCampaign.title" required name="campaignTitle">
-        <span  class="form-error" ng-show="campaignCreate.campaignTitle.$touched && campaignCreate.campaignTitle.$invalid">Le title de campaigne ne doit pas être vide!</span>
+        <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne" ng-model="dataCampaign.title" required name="campaignTitle" ensure-unique="cmapaignTitle">
+        <span  class="form-error" ng-show="campaignCreate.campaignTitle.$touched && campaignCreate.campaignTitle.$invalid">Required! </span>
+        <span  class="form-error" ng-show="campaignCreate.campaignTitle.$touched && campaignCreate.campaignTitle.$error.unique">Attention: Le title de campaigne déjà exist!</span>
       </div>
       <div class="form-group col-md-12">
         <label for="campaignDescribe">Description</label>
