@@ -28,17 +28,22 @@ angular.module('newsletterApp')
 
     // when submitting the add form, send the text to the node API
     $scope.createCampaign = function() {
-      $http.post('/api/campaigns', $scope.dataCampaign)
-        .success(function(data) {
-          $scope.dataCampaign = {}; // clear the form so our user is ready to enter another
-          $scope.campaigns = data;
-          console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-        SweetAlert.swal("Great !", "Votre campagne a bien été créé !", "s");
-        $location.path("/manage-campaign");
+      if ($scope.campaignCreate.$valid) {
+        // Submit as normal
+        $http.post('/api/campaigns', $scope.dataCampaign)
+          .success(function(data) {
+            $scope.dataCampaign = {}; // clear the form so our user is ready to enter another
+            $scope.campaigns = data;
+            console.log(data);
+          })
+          .error(function(data) {
+              console.log('Error: ' + data);
+          });
+          SweetAlert.swal("Great !", "Votre campagne a bien été créé !", "s");
+          $location.path("/manage-campaign");
+      }else{
+        sweetAlert("Oops...", "Veyez vérifier votre formulaire!", "error");
+      }
     };
 
     //Get templates

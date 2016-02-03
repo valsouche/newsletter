@@ -26,6 +26,7 @@
 
 
          $scope.updateCampaign = function(){
+          if ($scope.campaignModif.$valid) {
             SweetAlert.swal({
               title: "Sûr de vous ?",
               text: "Vous êtes sur le point de mettre votre campagne à jour",
@@ -52,10 +53,8 @@
                   SweetAlert.swal("Annulé", "Ouufffff :)", "error");
                 }
             });
+          }else{
+            sweetAlert("Oops...", "Veyez vérifier votre formulaire!", "error");
           }
-
-
-
-
-
+        }
   }]);
