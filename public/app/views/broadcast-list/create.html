@@ -21,24 +21,76 @@
         
     <div class="container">
 
+        <div class="col-md-6 col-sm-12">
         <!-- Broadcast list name -->
 
-        <h3>Nom de la liste</h3>
+            <h3>Nom de la liste</h3>
 
-        <div>
-            <label for="broadcastListTitle">Nom de la liste</label>
+            <div>
+                <label for="broadcastListTitle">Nom de la liste</label>
 
-            <input type="text" 
-                   class="form-control" 
-                   id="broadcastListTitle" 
-                   placeholder="Nom de la liste" 
-                   ng-model="broadcastList.title" />
+                <input type="text"
+                       class="form-control"
+                       id="broadcastListTitle"
+                       placeholder="Nom de la liste"
+                       ng-model="broadcastList.title" />
+            </div>
         </div>
-
     </div>
         
 </div>
-    
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-6 col-sm-12">
+            <h3>Ajouter manuellement</h3>
+            <form class="form-inline">
+                <input type="text"
+                       class="form-control"
+                       id="emailEntity"
+                       placeholder="Email"
+                       ng-model="address">
+
+                <button type="submit"
+                        class="btn btn-default"
+                        ng-click="addEmails()">
+                    Ajouter
+                </button>
+            </form>
+            <ul>
+                <li ng-repeat="mail in email">
+                    <span><input type="checkbox" ng-model="mailChecked"> </span>
+                    <span> {{mail.address}}</span>
+                </li>
+            </ul>
+            <div class="form-group" ng-if="email.length > 0">
+                <label>Tout cocher</label>
+                <input type="checkbox" ng-model="checkedAll">
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <h3>Importer votre fichier CSV</h3>
+            <ng-csv-import
+                    class="import"
+                    content="csv.content"
+                    header="csv.header"
+                    header-visible="csv.headerVisible"
+                    separator="csv.separator"
+                    separator-visible="csv.separatorVisible"
+                    result="csv.result"
+                    encoding="csv.encoding"
+                    encoding-visible="csv.encodingVisible"></ng-csv-import>
+
+            <div ng-if="csv.result">
+                <div class="content">
+                    {{csv.result}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!-- Saving -->
 
     <div class="row">

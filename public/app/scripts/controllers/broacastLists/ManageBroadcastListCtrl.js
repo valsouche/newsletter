@@ -79,7 +79,24 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         $scope.broadcastLists = data;
         //$scope.$apply();
     }
-    
+
+    // Email gestion
+    $scope.email = [];
+
+    $scope.addEmails = function() {
+      if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
+        $scope.email.push({
+          address: $scope.address,
+          deleted: false
+        });
+        $scope.address = '';
+        var test = $scope.email;
+      } else {
+        console.log('Champ vide !');
+      }
+      $scope.broadcastList.emails = test;
+    }
+
     // get all broadcast lists
     
     $http.get('/api/broadcast-lists')
@@ -191,6 +208,5 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
           }
         });
     };
-
 });
 
