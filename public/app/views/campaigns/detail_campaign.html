@@ -1,8 +1,8 @@
 <div class="container-fluid bs-docs-header">
   <div class="container">
-    <h2>Campaign: </h2>
-    <p>Vous pouvez modifier votre campaign ici!</p>
-    <a ng-href="#/manage-campaign" class="btn">Gérer mes templates</a>
+    <h2>Campagne: </h2>
+    <p>Vous pouvez modifier votre Campagne ici!</p>
+    <a ng-href="#/manage-campaign" class="btn">Gérer mes Campagnes</a>
   </div>
 </div>
 
@@ -12,8 +12,9 @@
   	<form class="form-horizontal" name="campaignModif">
 	  <div class="form-group col-md-6 col-sm-12">
 	    <label for="campaignTitle" class="control-label">Title: </label>
-  	  <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title"  required name="campaignTitle" >
+  	  <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title"  required name="campaignTitle" ensure-unique-camp="campaignTitle">
 		  <span class="form-error" ng-show="campaignModif.campaignTitle.$touched && campaignModif.campaignTitle.$invalid">Required! </span>
+		  <span  class="form-error" ng-show="campaignModif.campaignTitle.$touched && campaignModif.campaignTitle.$error.unique">Attention: Le title de campaigne déjà exist!</span>
     </div>
     <div class="form-group col-md-12">
 	    <label for="campaignDescribe" class="ontrol-label">Description: </label>

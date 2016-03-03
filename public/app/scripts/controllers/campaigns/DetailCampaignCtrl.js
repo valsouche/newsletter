@@ -57,4 +57,29 @@
             sweetAlert("Oops...", "Veyez vérifier votre formulaire!", "error");
           }
         }
-  }]);
+  }])
+.directive('ensureUniqueCamp', ['$http','$timeout','$window',function($http,$timeout,$window) {
+    return {
+        restrict:"A",
+        require: 'ngModel',
+        link: function(scope, ele, attrs, ngModelController) {
+            scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+                if (!newValue) return;
+                $timeout.cancel($window.timer);
+                if(newValue!=oldValue && oldValue!=undefined){
+                $window.timer = $timeout(function(){
+                    $http({
+                        method: 'get',
+                        url: '/api/titleCampagneUnique/'+newValue,
+                    }).success(function(data) {
+
+                        ngModelController.$setValidity('unique', data); 
+                    }).error(function(data) {
+                        ngModelController.$setValidity('unique', false);
+                    });
+                },500);
+              }
+            });
+        }
+    }
+ }]);
