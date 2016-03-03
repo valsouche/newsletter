@@ -314,3 +314,13 @@
     // listen (start app with node server.js) ======================================
     app.listen(8080);
     console.log("Firemail App started on :8080");
+
+    /**
+     * Application timer, called every 5 seconds to look for new mail to send
+     */
+    
+    setInterval( function() {
+        
+        console.log(new Date());
+        
+    }, 5000);  

@@ -8,7 +8,7 @@
  * Controller of the newsletterApp
  */
 angular.module('newsletterApp')
-  .controller('ManageCampaignCtrl', function ($scope, $http,SweetAlert) {
+  .controller('ManageCampaignCtrl', function ($scope, $http,SweetAlert, ManageEmailsServ) {
      $scope.formData = {};
 
     // when landing on the page, get all todos and show them
@@ -46,6 +46,10 @@ angular.module('newsletterApp')
               SweetAlert.swal("Annulé !", "Oufff :)", "error");
            }
         });
+    };
+    
+    $scope.myFunction = function() {
+        ManageEmailsServ.generateEmailSending();
     };
 
   });
