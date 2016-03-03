@@ -6,16 +6,19 @@
   </div>
 </div>
 
-<form>
-  <div class="row">
+<form name="templateCreate">
+   <div class="row">
     <div class="container">
-      <div class="form-group col-md-4 col-sm-12">
-        <label for="campaignTitle">Titre</label>
-        <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre newsletter" ng-model="dataTemplate.title">
+      <div class="form-group col-md-6 col-sm-12">
+        <label for="templateTitle">Titre</label>
+        <input type="text" class="form-control" id="templateTitle" placeholder="Titre de votre newsletter" ng-model="dataTemplate.title" required name="templateTitle" ensure-unique-temp="templateTitle">
+        <span  class="form-error" ng-show="templateCreate.templateTitle.$touched && templateCreate.templateTitle.$invalid">Required! </span>
+        <span  class="form-error" ng-show="templateCreate.templateTitle.$touched && templateCreate.templateTitle.$error.unique">Attention: Le title de template déjà exist!</span>
       </div>
       <div class="form-group col-md-8 col-sm-12">
-        <label for="campaignDescribe">Description de votre template</label>
-        <input type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre newsletter" ng-model="dataTemplate.describe">
+        <label for="templateDescribe">Description de votre template</label>
+        <input type="text" class="form-control" id="templateDescribe" placeholder="Description de votre newsletter" ng-model="dataTemplate.describe" ng-maxlength=100 name="templateDescribe">
+        <span  class="form-error" ng-show="templateCreate.templateDescribe.$error.maxlength">Votre description ne peut pas être plus long que 100 lettres!</span>
       </div>
       <div class="form-group col-md-12">
         <label for="campaignContent">Corps de votre message</label>

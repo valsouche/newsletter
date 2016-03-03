@@ -329,7 +329,22 @@
                 res.json(templates);
             });
         });
-    });
+      });
+      //vérification title unique
+      app.get('/api/titleTemplateUnique/:template_title',function(req,res){
+        Template.find({title:req.params.template_title} , function(err,template) {
+              if(err) {
+                res.send(err);
+              }
+              if(template.length!=0){
+                res.send(false);
+              }else{
+                res.send(true);
+              }
+            });
+      });
+      
+
 
   // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));
