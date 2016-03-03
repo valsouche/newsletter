@@ -16,7 +16,9 @@
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'oitozero.ngSweetAlert'
+    'oitozero.ngSweetAlert',
+    'ngCsvImport',
+    'hljs'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -41,7 +43,7 @@
       })
       .when('/liste-de-diffusion-creation', {
         templateUrl: 'views/broadcast-list/create.html',
-        controller: 'ManageBroadcastListCtrl'
+        controller: 'CreateBroadcastListCtrl'
       })
       .when('/liste-de-diffusion-modification/:title', {
         templateUrl: 'views/broadcast-list/create.html',

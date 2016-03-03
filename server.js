@@ -25,14 +25,7 @@
     
     var BroadcastList = mongoose.model('BroadcastLists', {
         title : String,
-        
-        // address
-        // isDeleted
-        
-        emails: {
-            address : String,
-            deleted : Boolean
-        }
+        emails: []
     });
     
     //
@@ -126,13 +119,10 @@
         
         BroadcastList.create({
            title: req.body.title,
-           emails: req.body.emails 
+           emails: req.body.emails
         }, function(err) {
             if(err) {
               res.send(err);
-            }
-            else {
-                res.redirect("/manage-group");
             }
         });
         
