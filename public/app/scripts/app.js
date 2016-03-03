@@ -43,7 +43,7 @@
       })
       .when('/liste-de-diffusion-creation', {
         templateUrl: 'views/broadcast-list/create.html',
-        controller: 'ManageBroadcastListCtrl'
+        controller: 'CreateBroadcastListCtrl'
       })
       .when('/liste-de-diffusion-modification/:title', {
         templateUrl: 'views/broadcast-list/create.html',
