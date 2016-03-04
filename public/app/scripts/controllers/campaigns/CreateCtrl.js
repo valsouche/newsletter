@@ -28,17 +28,22 @@ angular.module('newsletterApp')
 
     // when submitting the add form, send the text to the node API
     $scope.createCampaign = function() {
-      $http.post('/api/campaigns', $scope.dataCampaign)
-        .success(function(data) {
-          $scope.dataCampaign = {}; // clear the form so our user is ready to enter another
-          $scope.campaigns = data;
-          console.log(data);
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-        SweetAlert.swal("Great !", "Votre campagne a bien été créé !", "s");
-        $location.path("/manage-campaign");
+      if ($scope.campaignCreate.$valid) {
+        // Submit as normal
+        $http.post('/api/campaigns', $scope.dataCampaign)
+          .success(function(data) {
+            $scope.dataCampaign = {}; // clear the form so our user is ready to enter another
+            $scope.campaigns = data;
+            console.log(data);
+          })
+          .error(function(data) {
+              console.log('Error: ' + data);
+          });
+          SweetAlert.swal("Great !", "Votre campagne a bien été créé !", "s");
+          $location.path("/manage-campaign");
+      }else{
+        sweetAlert("Oops...", "Veyez vérifier votre formulaire!", "error");
+      }
     };
 
     //Get templates
@@ -65,4 +70,26 @@ angular.module('newsletterApp')
         console.log('Error: ' + data);
       });
     
-  });
+  })
+.directive('ensureUnique', ['$http','$timeout','$window',function($http,$timeout,$window) {
+    return {
+        restrict:"A",
+        require: 'ngModel',
+        link: function(scope, ele, attrs, ngModelController) {
+            scope.$watch(attrs.ngModel, function(n) {
+                if (!n) return;
+                $timeout.cancel($window.timer);
+                $window.timer = $timeout(function(){
+                    $http({
+                        method: 'get',
+                        url: '/api/titleCampagneUnique/'+n,
+                    }).success(function(data) {
+                        ngModelController.$setValidity('unique', data); 
+                    }).error(function(data) {
+                        ngModelController.$setValidity('unique', false);
+                    });
+                },500);
+            });
+        }
+    }
+ }]);

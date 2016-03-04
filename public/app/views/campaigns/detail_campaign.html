@@ -9,32 +9,29 @@
 
   <div class="container" id="datail_form">
 
-  	<form class="form-horizontal">
-	  <div class="form-group">
-	    <label for="campaignTitle" class="col-sm-1 control-label">Title: </label>
-	    <div class="col-sm-4">
-	      <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title" >
-
-	    </div>
-	    <label for="campaignDescribe" class="col-sm-2 control-label">Description: </label>
-	    <div class="col-sm-4">
-	      <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre campaign" ng-model="detailCampaign.describe" ></textarea>
-	    </div>
+  	<form class="form-horizontal" name="campaignModif">
+	  <div class="form-group col-md-6 col-sm-12">
+	    <label for="campaignTitle" class="control-label">Title: </label>
+  	  <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campaign" ng-model="detailCampaign.title"  required name="campaignTitle" >
+		  <span class="form-error" ng-show="campaignModif.campaignTitle.$touched && campaignModif.campaignTitle.$invalid">Required! </span>
+    </div>
+    <div class="form-group col-md-12">
+	    <label for="campaignDescribe" class="ontrol-label">Description: </label>
+      <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre campaign" ng-model="detailCampaign.describe" ng-maxlength=100 name="campaignDescribe"></textarea>
+      <span  class="form-error" ng-show="campaignModif.campaignDescribe.$error.maxlength">Votre description ne peut pas être plus long que 100 lettres!</span>
 	  </div>
+	  <div class="form-group  col-md-6 col-sm-12">
+	    <label for="templates" class="control-label">Selectionner un template: </label>
+      <select id="templates" class="form-control" ng-model="detailCampaign.templete">
+        <option> Templates</option>
+      </select>	
+	  </div>
+	  <div class="form-group col-md-6 col-sm-12">
+	    <label for="diffusionList" class="control-label">Selectionner une liste de contact: </label>
+      <select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
+        <option>Listes</option>
+      </select>
 
-	  <div class="form-group">
-	    <label for="templates" class="col-sm-1 control-label">Templates: </label>
-	    <div class="col-sm-4">
-	      <select id="templates" class="form-control" ng-model="detailCampaign.templete">
-	          <option> Templates</option>
-	        </select>
-	    </div>
-	    <label for="diffusionList" class="col-sm-2 control-label">List de diffusion: </label>
-	    <div class="col-sm-4">
-            <select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
-	          <option>Listes</option>
-	        </select>
-	    </div>
 	  </div>
 	  
 	  <div class="form-group">
