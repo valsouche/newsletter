@@ -16,7 +16,20 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
     $scope.broadcastList = {};
     $scope.broadcastLists = {};
     $scope.broadcastListCurrentlyUpdating = false;
-    
+    $scope.email = []; // Use to stock all manual added and csv emails address
+
+    // CSV import directive config
+    $scope.csv = {
+      content: null,
+      header: true,
+      headerVisible: true,
+      separator: ',',
+      separatorVisible: true,
+      result: null,
+      encoding: 'ISO-8859-1',
+      encodingVisible: true
+    };
+
     //
     
     $scope.init = function() {
@@ -80,10 +93,18 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         //$scope.$apply();
     }
 
-    // Email gestion
-    $scope.email = [];
+    // Add all CSV emails address in email tab
+    $scope.addCsvEmails = function() {
+      $scope.csv.result.forEach(function(value){
+        $scope.email.push({
+          address: value.email,
+          deleted: false
+        })
+      })
+    };
 
-    $scope.addEmails = function() {
+    // Add emails address manually
+    $scope.addManualEmails = function() {
       if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
         $scope.email.push({
           address: $scope.address,
@@ -95,7 +116,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         console.log('Champ vide !');
       }
       $scope.broadcastList.emails = test;
-    }
+    };
+
 
     // get all broadcast lists
     
