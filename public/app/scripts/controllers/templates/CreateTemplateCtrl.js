@@ -14,19 +14,23 @@ angular.module('newsletterApp')
 
     // when submitting the add form, send the text to the node API
     $scope.createTemplate = function() {
-      $http.post('/api/templates', $scope.dataTemplate)
+      if ($scope.templateCreate.$valid) {
+        $http.post('/api/templates', $scope.dataTemplate)
 
-        .success(function(data) {
-          $scope.dataTemplate= {}; // clear the form so our user is ready to enter another
-          $scope.templates = data;
-        })
+          .success(function(data) {
+            $scope.dataTemplate= {}; // clear the form so our user is ready to enter another
+            $scope.templates = data;
+          })
 
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
-        
-        SweetAlert.swal("Great !", "Votre template a bien été créé !", "success");
-        $location.path("/manage-template");
+          .error(function(data) {
+              console.log('Error: ' + data);
+          });
+          
+          SweetAlert.swal("Great !", "Votre template a bien été créé !", "success");
+          $location.path("/manage-template");
+      }else{
+        sweetAlert("Oops...", "Veyez vérifier votre formulaire!", "error");
+      }
     };
 
     // Check if URL is not create-template, so it's update url
@@ -77,4 +81,29 @@ angular.module('newsletterApp')
            });
       };
     }
-  });
+  })
+.directive('ensureUniqueTemp', ['$http','$timeout','$window',function($http,$timeout,$window) {
+    return {
+        restrict:"A",
+        require: 'ngModel',
+        link: function(scope, ele, attrs, ngModelController) {
+            scope.$watch(attrs.ngModel, function(newValue, oldValue) {
+                if (!newValue) return;
+                $timeout.cancel($window.timer);
+                if(newValue!=oldValue && oldValue!=undefined){
+                $window.timer = $timeout(function(){
+                    $http({
+                        method: 'get',
+                        url: '/api/titleTemplateUnique/'+newValue,
+                    }).success(function(data) {
+
+                        ngModelController.$setValidity('unique', data); 
+                    }).error(function(data) {
+                        ngModelController.$setValidity('unique', false);
+                    });
+                },500);
+              }
+            });
+        }
+    }
+ }]);
