@@ -83,12 +83,12 @@
     <!-- Saving -->
 
 <div class="row">
-    <div class="container">
+    <div ng-if="! broadcastListCurrentlyUpdating" class="container">
         <table ng-if="email != ''" class="table table-hover">
 
             <thead>
             <tr>
-                <th style="width:10%;">ID</th>
+                <th style="width:10%;">Selectionner</th>
                 <th>Adresses emails</th>
                 <th style="width:20%;">Actions</th>
             </tr>
@@ -105,18 +105,40 @@
             </tbody>
 
         </table>
-        <button type="submit"
-                class="btn btn-default form-button"
-                ng-if="broadcastListCurrentlyUpdating"
-                ng-click="update(broadcastList._id, broadcastList.emails)">
-            Modifier la liste
-        </button>
 
         <button type="submit"
                 class="btn btn-default form-button"
-                ng-if="! broadcastListCurrentlyUpdating"
                 ng-click="create()">
             Créer la liste
+        </button>
+    </div>
+
+    <div ng-if=" broadcastListCurrentlyUpdating" class="container">
+        <table class="table table-hover">
+
+            <thead>
+            <tr>
+                <th style="width:10%;">Selectionner</th>
+                <th>Adresses emails</th>
+                <th style="width:20%;">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody id="campaigne_list">
+            <tr ng-repeat="mail in broadcastList.emails">
+                <td><input type="checkbox" ng-model="mailChecked"></td>
+                <td class="title-campaigne">{{mail.address}}</td>
+                <td class="btn-campaigne">
+                    <a ng-click="deleteEmail()" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <button type="submit"
+                class="btn btn-default form-button"
+                ng-click="update(broadcastList._id, broadcastList.emails)">
+            Modifier la liste
         </button>
     </div>
 </div>
