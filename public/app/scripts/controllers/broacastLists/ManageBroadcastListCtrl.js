@@ -31,8 +31,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
     };
 
     //
-    
-    $scope.init = function() {
+
+    var _init = function() {
         
         var title = $routeParams.title;
         
@@ -47,10 +47,21 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         else {
             $scope.broadcastListCurrentlyUpdating = false;
         }
-        
+
+
+        // get all broadcast lists
+
+        $http.get('/api/broadcast-lists')
+
+          .success( function(data) {
+            $scope.broadcastLists = data;
+          })
+
+          .error( function(data) {
+            console.log('Error: ' + data);
+          });
     };
-    
-    $scope.init();
+
     
     /**
      * @param title
@@ -92,6 +103,7 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         //$scope.$apply();
     }
 
+
     // Add all CSV emails address in email tab
     $scope.addCsvEmails = function() {
       $scope.csv.result.forEach(function(value){
@@ -99,7 +111,9 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
           address: value.email,
           deleted: false
         })
+        var test = $scope.email;
       })
+      $scope.broadcastList.emails = test;
     };
 
     // Add emails address manually
@@ -117,19 +131,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
       $scope.broadcastList.emails = test;
     };
 
-
-    // get all broadcast lists
-    
-    $http.get('/api/broadcast-lists')
-    
-      .success( function(data) {
-        $scope.broadcastLists = data;
-        console.log(data);
-      })
-      
-      .error( function(data) {
-        console.log('Error: ' + data);
-      });
     
     // Create a new broadcast list
     
@@ -229,5 +230,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
           }
         });
     };
+
+  _init();
+
 });
 
