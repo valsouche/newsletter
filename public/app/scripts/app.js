@@ -18,7 +18,8 @@
     'ngTouch',
     'oitozero.ngSweetAlert',
     'ngCsvImport',
-    'hljs'
+    'hljs',
+    'textAngular'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
