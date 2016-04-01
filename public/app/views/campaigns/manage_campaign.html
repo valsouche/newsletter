@@ -8,37 +8,29 @@
 </div>
 <div class="container" id="campaigne_page_list">
     <h3>Mes Campagnes ( {{ campaigns.length }} )</h3>
-        <table class="table table-hover">
+    <div class="table-responsive">
+        <table class="table table-striped">
             <thead>
               <tr>
                 <th style="width:10%;">Statuts</th>
-                <th>Informations</th>
-                <th style="width:20%;">Actions</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="campaigne_list">
               <tr ng-repeat="campaign in campaigns">
-                <td>{{campaign.status}}</td>
-                <td>
-                  <table>
-                    <tr>
-                        <td class="title-campaigne">{{campaign.title}}</td>
-                    </tr>
-                    <tr>
-                        <td class="descp-campaigne">{{campaign.describe}}</td>
-                    </tr>
-                     <tr>
-                        <td class="title-campaigne">{{campaign.status}}</td>
-                    </tr>
-                  </table>
-                </td>
-                <td class="btn-campaigne">
-                    <!-- <a ng-click="detailCampaign(campaign._id)" class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a> -->
-                    <a ng-href='#/detail-campaign/{{campaign._id}}' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
-                    <a ng-click="sendCampain(campaign._id)" class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
-                    <a ng-click="deleteCampaigns(campaign._id)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
+                  <th>{{campaign.status}}</th>
+                  <td class="title-campaigne">{{campaign.title}}</td>
+                  <td class="descp-campaigne">{{campaign.describe}}</td>
+                  <td class="btn-campaigne">
+                      <!-- <a ng-click="detailCampaign(campaign._id)" class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a> -->
+                      <a ng-href='#/detail-campaign/{{campaign._id}}' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
+                      <a ng-click="sendCampain(campaign._id)" class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
+                      <a ng-click="deleteCampaigns(campaign._id)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                  </td>
               </tr>
             </tbody>
           </table>
     </div>
+</div>
