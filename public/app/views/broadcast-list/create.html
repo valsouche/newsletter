@@ -88,24 +88,32 @@
 
             <thead>
             <tr>
-                <th style="width:10%;">Selectionner</th>
+                <th style="width:10%;">Sélectionner</th>
                 <th>Adresses emails</th>
                 <th style="width:20%;">Actions</th>
             </tr>
             </thead>
 
             <tbody id="campaigne_list">
-            <tr ng-repeat="mail in email">
-                <td><input type="checkbox" ng-model="mailChecked"></td>
+            <tr ng-repeat="mail in email | filter:{deleted:'false'}">
+                <td><input type="checkbox" ng-change="isChecked(mail)" ng-model="mailChecked"></td>
                 <td class="title-campaigne">{{mail.address}}</td>
                 <td class="btn-campaigne">
-                    <a ng-click="deleteEmail()" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a ng-click="deleteEmail(mail)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             </tbody>
 
         </table>
 
+        <button ng-click="checkAll()"
+                class="btn btn-default form-button">
+            Tout séléctionner
+        </button>
+        <button class="btn btn-default form-button"
+                ng-click="deleteAllEmails()">
+            Tout supprimer
+        </button>
         <button type="submit"
                 class="btn btn-default form-button"
                 ng-click="create()">
@@ -125,16 +133,24 @@
             </thead>
 
             <tbody id="campaigne_list">
-            <tr ng-repeat="mail in broadcastList.emails">
-                <td><input type="checkbox" ng-model="mailChecked"></td>
+            <tr ng-repeat="mail in broadcastList.emails | filter:{deleted:'false'}">
+                <td><input type="checkbox" ng-change="isChecked(mail)" ng-model="mailChecked"></td>
                 <td class="title-campaigne">{{mail.address}}</td>
                 <td class="btn-campaigne">
-                    <a ng-click="deleteEmail()" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a ng-click="deleteEmail(mail)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             </tbody>
 
         </table>
+        <button ng-click="checkAll()"
+                class="btn btn-default form-button">
+            Tout séléctionner
+        </button>
+        <button class="btn btn-default form-button"
+                ng-click="deleteAllEmails()">
+            Tout supprimer
+        </button>
         <button type="submit"
                 class="btn btn-default form-button"
                 ng-click="update(broadcastList._id, broadcastList.emails)">

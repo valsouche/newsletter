@@ -12,13 +12,10 @@
 angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function ($scope, $http, $location, $routeParams, SweetAlert) {
       
     // Broadcast List Object
-    
     $scope.broadcastList = {};
     $scope.broadcastLists = {};
     $scope.broadcastListCurrentlyUpdating = false;
     $scope.email = []; // Use to stock all manual added and csv emails address
-
-    // CSV import directive config
     $scope.csv = {
       content: null,
       header: true,
@@ -28,10 +25,9 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
       result: null,
       encoding: 'ISO-8859-1',
       encodingVisible: true
-    };
+    }; // CSV import directive config
 
     //
-
     var _init = function() {
         
         var title = $routeParams.title;
@@ -62,7 +58,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
           });
     };
 
-    
     /**
      * @param title
      *      
@@ -104,37 +99,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         //$scope.$apply();
     }
 
-
-    // Add all CSV emails address in email tab
-    $scope.addCsvEmails = function() {
-      $scope.csv.result.forEach(function(value){
-        $scope.email.push({
-          address: value.email,
-          deleted: false
-        })
-        var test = $scope.email;
-      })
-      $scope.broadcastList.emails = test;
-    };
-
-    // Add emails address manually
-    $scope.addManualEmails = function() {
-      if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
-        $scope.email.push({
-          address: $scope.address,
-          deleted: false
-        });
-        $scope.address = '';
-        var test = $scope.email;
-      } else {
-        console.log('Champ vide !');
-      }
-      $scope.broadcastList.emails = test;
-    };
-
-    
+  // BROADCAST LIST MANAGE
     // Create a new broadcast list
-    
     $scope.create = function() {
 
         $http.post('/api/broadcast-lists', $scope.broadcastList)
@@ -197,7 +163,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
     };
     
     // remove a broadcast list
-    
     $scope.remove = function(id) {
       SweetAlert.swal({
           title: "Sûr de vous ?",
@@ -232,7 +197,51 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         });
     };
 
-  _init();
 
+
+
+  // MANAGE EACH BROADCAST LIST EMAIL
+  // Add all CSV emails address in email tab
+  $scope.addCsvEmails = function() {
+    var test;
+    $scope.csv.result.forEach(function(value){
+      $scope.email.push({
+        address: value.email,
+        deleted: false
+      });
+      test = $scope.email;
+    });
+    $scope.broadcastList.emails = test;
+  };
+
+  // Add emails address manually
+  $scope.addManualEmails = function() {
+    if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
+      $scope.email.push({
+        address: $scope.address,
+        deleted: false
+      });
+      $scope.address = '';
+      var test = $scope.email;
+    } else {
+      console.log('Champ vide !');
+    }
+    $scope.broadcastList.emails = test;
+  };
+
+  $scope.checkAll = function() {
+    $scope.mailChecked = !$scope.mailChecked;
+  };
+  // Remove email
+  $scope.deleteEmail = function(mail) {
+    mail.deleted = !mail.deleted;
+  };
+  $scope.deleteAllEmails = function() {
+    $scope.email.forEach(function(value) {
+      value.deleted = true;
+    })
+  };
+
+  _init();
 });
 
