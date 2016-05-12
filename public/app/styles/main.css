@@ -69,9 +69,15 @@ textarea.ng-invalid-maxlength {
 .bs-docs-header .btn{
   margin:auto 15% auto auto;
   float: right;
+
+}
+#intro-head .btn{
+  float: none;
+    margin:auto auto auto auto;
 }
 .container-body h3{
-  color: #1A2937
+  color: #1A2937;
+
 }
 .container-body table{
   width: 80%;
@@ -166,4 +172,7 @@ textarea.ng-invalid-maxlength {
 .groupe td img{
   border-radius:50%;
   width: 150px;
+}
+.groupe td{
+  text-align: center;
 }
