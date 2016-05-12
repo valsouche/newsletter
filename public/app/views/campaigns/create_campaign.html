@@ -17,19 +17,20 @@
         <label for="campaignDescribe">Description</label>
         <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Petite description ..."
         ng-model="dataCampaign.describe" ng-maxlength=100 name="campaignDescribe"></textarea>
-        <span  class="form-error" ng-show="campaignCreate.campaignDescribe.$error.maxlength">Votre description ne peut pas être plus long que 100 lettres!</span>
+        <span  class="form-error" ng-show="campaignCreate.campaignDescribe.$error.maxlength">Votre description ne doit pas dépasser 100 lettres!</span>
       </div>
       <div class="col-md-6 col-sm-12">
         <label for="templates">Selectionner un template</label>
-        <select id="templates" class="form-control">
-          <option ng-repeat="tpl in templates"> {{tpl.title}}</option>
-        </select>
+        <select id="templates" class="form-control" ng-model="dataCampaign.template" ng-options="tpl.title for tpl in templates"></select>
       </div>
       <div class="col-md-6 col-sm-12">
         <label for="diffusionList">Selectionner une liste de contact</label>
+        <select class="form-control" ng-model="dataCampaign.broadcastList" ng-options="bl.title for bl in broadcastLists"></select>
+        <!--
         <select id="diffusionList" class="form-control">
           <option ng-repeat="bl in broadcastLists">{{bl.title}}</option>
         </select>
+        -->
       </div>
     </div>
   </div>
