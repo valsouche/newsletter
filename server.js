@@ -45,12 +45,15 @@
     });
 
     var Campaign = mongoose.model('Campaigns', {
-      title : String,
-      describe : String,
-      template : String,
-      contact : String,
-      creator : String,
-      status : String
+        inbox : Number,
+        gone : Number,
+        title : String,
+        describe : String,
+        template : String,
+        broadcastList : String,
+        contact : String,
+        creator : String,
+        status : String
     });
 
 
@@ -64,7 +67,7 @@
 
             // if there is an error retrieving, send the error. nothing after res.send(err) will execute
             if(err) {
-              res.send(err)
+              res.send(err);
             }
             res.json(broadcastLists); // return all emails in JSON format
         });
@@ -83,7 +86,7 @@
                 function(err, broadcastLists) {
 
             if (err) {
-              res.send(err)
+              res.send(err);
             }
 
             res.json(broadcastLists); // return all emails in JSON format
@@ -104,7 +107,6 @@
                     broadcastList.emails = req.body.emails;
                     
                     broadcastList.save(function() {
-                        res.send("awesome " + req.body.title);
                     });
             }
         );
@@ -185,6 +187,7 @@
           title : req.body.title,
           describe : req.body.describe,
           status: "En attente",
+          broadcastList: req.body.broadcastList.title,
           done : false
         }, function(err) {
             if(err) {
@@ -314,13 +317,3 @@
     // listen (start app with node server.js) ======================================
     app.listen(8080);
     console.log("Firemail App started on :8080");
-
-    /**
-     * Application timer, called every 5 seconds to look for new mail to send
-     */
-    
-    setInterval( function() {
-        
-        console.log(new Date());
-        
-    }, 5000);  

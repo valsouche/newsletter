@@ -24,9 +24,12 @@
       </div>
       <div class="col-md-6 col-sm-12">
         <label for="diffusionList">Selectionner une liste de contact</label>
+        <select class="form-control" ng-model="dataCampaign.broadcastList" ng-options="bl.title for bl in broadcastLists"></select>
+        <!--
         <select id="diffusionList" class="form-control">
           <option ng-repeat="bl in broadcastLists">{{bl.title}}</option>
         </select>
+        -->
       </div>
     </div>
   </div>
