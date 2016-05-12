@@ -7,6 +7,9 @@
     var morgan = require('morgan');             // log requests to the console (express4)
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport();
 
     // configuration =================
 
@@ -49,8 +52,8 @@
         gone : Number,
         title : String,
         describe : String,
-        template : String,
         broadcastList : String,
+        template : String,
         contact : String,
         creator : String,
         status : String
@@ -188,12 +191,14 @@
           describe : req.body.describe,
           status: "En attente",
           broadcastList: req.body.broadcastList.title,
+          template: req.body.template._id,
           done : false
         }, function(err) {
             if(err) {
               res.send(err);
             }
           });
+      console.log(req);
     });
 
     // delete a campaign
@@ -231,7 +236,7 @@
           });
 
       })
-    })
+    });
     //verification title unique
     app.get('/api/titleCampagneUnique/:campaign_title',function(req,res){
       Campaign.find({title:req.params.campaign_title} , function(err,campaign) {
@@ -244,7 +249,7 @@
               res.send(true);
             }
           });
-    })
+    });
     // Templates -------------------------------------------------------------
 
       // get all Templates
@@ -261,7 +266,6 @@
 
       // get templates by ID
         app.get('/api/templates/details/:id', function(req, res) {
-            // use mongoose to get all emails in the database
             Template.find({
               _id: req.params.id
             }, function(err, templates) {
@@ -269,7 +273,7 @@
                 if(err) {
                   res.send(err)
                 }
-                res.json(templates); // return all emails in JSON format
+                res.json(templates);
             });
         });
 
@@ -336,8 +340,21 @@
               }
             });
       });
-      
 
+      app.post('/api/send-campaign', function(req, res) {
+        var options = {
+          from: 'valentin.souche@epsi.fr', // sender address
+          to: req.body.to, // list of receivers
+          subject: req.body.subject, // Subject line
+          html: req.body.content
+        };
+        transporter.sendMail(options, function(error, info) {
+          if (error) {
+            console.log("Une erreur est survenue lors de l'envoi du mail");
+          }
+          console.log("Messages envoyés à " + options.to);
+        });
+      });
 
   // application -------------------------------------------------------------
    app.use(express.static(__dirname + '/public/app/'));

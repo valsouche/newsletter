@@ -11,6 +11,10 @@ angular.module('newsletterApp')
         .controller('ManageCampaignCtrl', function ($scope, $http,SweetAlert,$timeout) {
             $scope.formData = {};
 
+            var campaignData;
+            var timer;
+            var campaign, campaignEmails, campaignTpl, emails;
+
     // when landing on the page, get all todos and show them
     $http.get('/api/campaigns')
             .success(function(data) {
@@ -61,13 +65,17 @@ angular.module('newsletterApp')
     }
 
     /**
-     * 
+     *
      * @param {type} email
      * @returns {undefined}
      */
-    
+
     function sendEmail(email) {
-        console.log("Email sent : " + email + " " + new Date());
+      $http.post("/api/send-campaign", campaignData)
+       .success(function(data) {
+
+       });
+      console.log('Envoi à '+ email + 'effectué !')
     }
     
     /**
@@ -78,76 +86,55 @@ angular.module('newsletterApp')
     
     var broadcastList = "none";
     
-    var emailToSend = "";
-    
+
     $scope.sendCampain = function(campaign_id) {
         
-        // declaration
-        
-        var d = new Date();
-        var tmp, emails;
-                
-        $http.get('/api/campaignsDetail/' + campaign_id).success(
-                
-                function(data) {
-                    
-                    tmp = data[0];
-                    
-                    $http.get('/api/broadcast-lists/title/' + tmp.broadcastList).success(function(data) {
-                                
-                                tmp = data[0];
+      // declaration
 
-                                emails = tmp.emails;
+      var d = new Date();
 
-                                // starting code
-                                
-                                var x;
+      $http.get('/api/campaignsDetail/' + campaign_id)
+        .success(function(data) {
+            console.log('Lancement de la campagne');
+            campaign = data[0];
 
-                                for (var i = 0; i < emails.length; i++) {
+            $http.get('/api/templates/details/' + campaign.template)
+              .success(function(tpl) {
 
-                                    //
-                                    
-                                    var e = emails[i].address;
+                campaignTpl = tpl[0].content;
 
-                                    console.log("Current mail to send : " + e);
-                                    
-                                    emailToSend = e;
 
-                                    // calculate random number between 5-15 seconds
+                $http.get('/api/broadcast-lists/title/' + campaign.broadcastList)
+                  .success(function(data) {
 
-                                    x = Math.floor((Math.random() * 15) + 5);
+                    var x;
+                    campaignEmails = data[0];
+                    emails = campaignEmails.emails;
+                    // starting code
 
-                                    // recalculate the new date
+                      emails.forEach(function(email){
 
-                                    x = parseInt(d.getSeconds()) + parseInt(x);
+                        // calculate random number between 5-15 seconds
+                        x = Math.floor((Math.random() * 15) + 5);
+                        // recalculate the new date
+                        x = parseInt(d.getSeconds()) + parseInt(x);
+                        d.setSeconds(x);
+                        timer = 100 * x;
 
-                                    d.setSeconds(x);
-
-                                    // testing purpose
-
-                                    console.log("Date : " + dateDiffInSeconds(d, new Date()) + "s");
-                                    
-                                    $timeout(function(e) {
-                                         
-                                         var b = e;
-                                         console.log("cannot récupérer : " + emailToSend);
-                                        sendEmail(b);
-                                        
-                                    }, 1000);
-                                    
-                                    console.log("ok");
-                                }
-
-                    }); 
-                
-                }
-        ); 
-        
-        
-        
-        
-        
-        
+                        $timeout(function() {
+                            campaignData = {
+                              to: email.address,
+                              subject: campaign.describe,
+                              content: campaignTpl
+                            };
+                          // testing purpose
+                              console.log("Date : " + dateDiffInSeconds(d, new Date()) + "s");
+                              sendEmail(campaignData.to);
+                          }, timer);
+                      })
+                  });
+              });
+        });
     };
 
 });
