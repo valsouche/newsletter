@@ -114,23 +114,25 @@ angular.module('newsletterApp')
 
                       emails.forEach(function(email){
 
-                        // calculate random number between 5-15 seconds
-                        x = Math.floor((Math.random() * 15) + 5);
-                        // recalculate the new date
-                        x = parseInt(d.getSeconds()) + parseInt(x);
-                        d.setSeconds(x);
-                        timer = 100 * x;
+                        if (!email.deleted) {
+                          // calculate random number between 5-15 seconds
+                          x = Math.floor((Math.random() * 15) + 5);
+                          // recalculate the new date
+                          x = parseInt(d.getSeconds()) + parseInt(x);
+                          d.setSeconds(x);
+                          timer = 100 * x;
 
-                        $timeout(function() {
+                          $timeout(function () {
                             campaignData = {
                               to: email.address,
                               subject: campaign.describe,
                               content: campaignTpl
                             };
-                          // testing purpose
-                              console.log("Date : " + dateDiffInSeconds(d, new Date()) + "s");
-                              sendEmail(campaignData.to);
+                            // testing purpose
+                            console.log("Date : " + dateDiffInSeconds(d, new Date()) + "s");
+                            sendEmail(campaignData.to);
                           }, timer);
+                        }
                       })
                   });
               });
