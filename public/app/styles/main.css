@@ -66,65 +66,73 @@ textarea.ng-invalid-maxlength {
 
 /*****************************************/
 /* page campagnes */
-#campaigne_page_title .btn{
+.bs-docs-header .btn{
   margin:auto 15% auto auto;
   float: right;
 }
-#campaigne_page_list h3{
+.container-body h3{
   color: #1A2937
 }
-#campaigne_page_list table{
+.container-body table{
   width: 80%;
 }
-#campaigne_page_list thead{
+.container-body thead{
   border-bottom-style: inset;
   border-bottom-color: #f4f4f4;
 }
-#campaigne_page_list .title-campaigne{
+.container-body .title-campaigne{
   font-size: 20px;
   font-weight: bold;
   color: #020405;
 }
 
-#campaigne_page_list .title-campaigne:first-letter {
+.container-body .title-campaigne:first-letter {
   text-transform: uppercase;
 }
 
-#campaigne_page_list .descp-campaigne{
+.container-body .descp-campaigne{
   padding-left: 2%;
 }
-#campaigne_page_list .btn-campaigne{
+.container-body .btn-campaigne{
   vertical-align: bottom;
 }
-#campaigne_page_list .btn-campaigne .btn{
+.container-body .btn-campaigne .btn{
   color: #1A2937;
   background-color: #fff;
   border-color: #000;
 }
-#campaigne_page_list .btn-campaigne .btn:hover{
+.container-body .btn-campaigne .btn:hover{
     color: #fff;
     background-color: #1A2937;
 }
-#campaigne_page_list .btn-campaigne .supprimer:hover{
+.container-body .btn-campaigne .supprimer:hover{
     color:red;
     border: 2px solid red;
     background-color: #fff;
 }
-#campaigne_page_list .btn-campaigne .supprimer{
+.container-body .btn-campaigne .supprimer{
     color:#fff;
     border: 2px solid red;
     background-color: red;
 }
-
+.formulaire-creatList{
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 15px;
+}
 /**********************************************/
 /* page detail campaign */
-#datail_form .btn{
+.form{
+  padding-top: 15px;
+  text-align: right;
+  padding-right: 50px;
+}
+.form .btn{
   color: #1A2937;
   background-color: #fff;
   border-color: #000;
   margin-left: 2%;
 }
-#datail_form .btn:hover{
+.form .btn:hover{
   color: #fff;
   background-color: #1A2937;
 }

@@ -4,9 +4,9 @@
     <p> Créez votre campagne de la plus simple des manière, en quelques clics.</p>
   </div>
 </div>
+<div class ="container">
 <form name="campaignCreate">
-  <div class="row">
-    <div class="container">
+
       <div class="form-group col-md-6 col-sm-12">
         <label for="campaignTitle">Titre</label>
         <input type="text" class="form-control" id="campaignTitle" placeholder="Titre de votre campagne" ng-model="dataCampaign.title" required name="campaignTitle" ensure-unique="cmapaignTitle">
@@ -31,11 +31,10 @@
           <option ng-repeat="bl in broadcastLists">{{bl.title}}</option>
         </select>
       </div>
+
+
+    <div class="form-group form col-sm-12">
+      <button type="submit" class="btn" ng-click="createCampaign()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
     </div>
-  </div>
-  <div class="row">
-    <div class="container">
-      <button type="submit" class="btn btn-default form-button" ng-click="createCampaign()">Enregistrer campagne</button>
-    </div>
-  </div>
 </form>
+</div>
