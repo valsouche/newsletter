@@ -21,25 +21,23 @@
       <textarea type="text" class="form-control" id="campaignDescribe" placeholder="Description de votre campaign" ng-model="detailCampaign.describe" ng-maxlength=100 name="campaignDescribe"></textarea>
       <span  class="form-error" ng-show="campaignModif.campaignDescribe.$error.maxlength">Votre description ne peut pas être plus long que 100 lettres!</span>
 	  </div>
-	  <div class="form-group  col-md-6 col-sm-12">
+	  <div class="col-md-6 col-sm-12">
 	    <label for="templates" class="control-label">Selectionner un template: </label>
       <select id="templates" class="form-control" ng-model="detailCampaign.templete">
         <option> Templates</option>
       </select>	
 	  </div>
-	  <div class="form-group col-md-6 col-sm-12">
+	  <div class="col-md-6 col-sm-12">
 	    <label for="diffusionList" class="control-label">Selectionner une liste de contact: </label>
-      <select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
+      	<select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
         <option>Listes</option>
       </select>
 
 	  </div>
 	  
-	  <div class="form-group">
-	    <div class="col-sm-offset-9 col-sm-4">
+	  <div class="form-group form col-sm-12">
 	    	<a class='btn'  ng-click="updateCampaign()" title="Enregister"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a>
 	    	<a href='/#manage-campaign' class='btn'  title="Retourner"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>
-	    </div>
 	  </div>
 	</form>
 </div>

@@ -1,7 +1,7 @@
 
 <!-- Header -->
 
-<div class="container-fluid bs-docs-header" id="campaigne_page_title">
+<div class="container-fluid bs-docs-header">
     
     <div class="container">
         
@@ -40,8 +40,8 @@
         
 </div>
 
-<div class="row">
-    <div class="container">
+<div class="row " >
+    <div class="container formulaire-creatList">
         <div class="col-md-6 col-sm-12">
             <h3>Ajouter manuellement</h3>
             <form class="form-inline">
@@ -50,12 +50,13 @@
                        id="emailEntity"
                        placeholder="Email"
                        ng-model="address">
-
-                <button type="submit"
+               <div class="form">
+                <a type="submit"
                         class="btn btn-default"
-                        ng-click="addManualEmails()">
-                    Ajouter
-                </button>
+                        ng-click="addManualEmails()" style="float: right;margin-top: -60px;margin-right: 97px;">
+                    <span class="glyphicon glyphicon-plus" title="ajouter" ></span>
+                </a>
+            </div>
             </form>
         </div>
 
@@ -63,18 +64,19 @@
             <h3>Importer votre fichier CSV</h3>
             <form class="form-inline">
                 <ng-csv-import
-                        class="import"
+                        class="import form-control"
                         content="csv.content"
                         header="csv.header"
                         separator="csv.separator"
                         result="csv.result"
                         encoding-visible="csv.encodingVisible"></ng-csv-import>
-
-                <button type="submit"
-                        class="btn btn-default"
-                        ng-click="addCsvEmails()">
-                    Importer
-                </button>
+                <div class="form">
+                <a type="submit"
+                        class="btn"
+                        ng-click="addCsvEmails()" style="float: right;margin-top: -60px;margin-right: 67px;">
+                    <span class="glyphicon glyphicon-upload" title="importer"></span>
+                </a>
+                </div>
             </form>
         </div>
     </div>
@@ -94,7 +96,7 @@
             </tr>
             </thead>
 
-            <tbody id="campaigne_list">
+            <tbody class="container-body" id="campaigne_list">
             <tr ng-repeat="mail in email | filter:{deleted:'false'}">
                 <td><input type="checkbox" ng-change="isChecked(mail)" ng-model="mailChecked"></td>
                 <td class="title-campaigne">{{mail.address}}</td>
@@ -105,20 +107,25 @@
             </tbody>
 
         </table>
-
-        <button ng-click="checkAll()"
-                class="btn btn-default form-button">
-            Tout séléctionner
-        </button>
-        <button class="btn btn-default form-button"
-                ng-click="deleteAllEmails()">
-            Tout supprimer
-        </button>
-        <button type="submit"
-                class="btn btn-default form-button"
-                ng-click="create()">
-            Créer la liste
-        </button>
+        <div class="form">
+            <a ng-click="checkAll()"
+                    class="btn" title="Tout séléctionner" >
+                    <span class="glyphicon glyphicon-asterisk" title="Tout séléctionner"></span>
+                    <span class="glyphicon glyphicon-ok" title="Tout séléctionner"></span>
+            </a>
+            <a class="btn"
+                    ng-click="deleteAllEmails()" title="Tout supprimer">
+                    <span class="glyphicon glyphicon-asterisk" title="Tout supprimer"></span>
+                    <span class="glyphicon glyphicon-remove" title="Tout supprimer"></span>
+                
+            </a>
+            <a type="submit"
+                    class="btn"
+                    ng-click="update(broadcastList._id, broadcastList.emails)" title="Modifier la liste">
+                    <span class="glyphicon glyphicon-pencil" title="Modifier la liste"></span>
+                
+            </a>
+        </div>
     </div>
 
     <div ng-if=" broadcastListCurrentlyUpdating" class="container">
@@ -132,7 +139,7 @@
             </tr>
             </thead>
 
-            <tbody id="campaigne_list">
+            <tbody class="container-body" id="campaigne_list">
             <tr ng-repeat="mail in broadcastList.emails | filter:{deleted:'false'}">
                 <td><input type="checkbox" ng-change="isChecked(mail)" ng-model="mailChecked"></td>
                 <td class="title-campaigne">{{mail.address}}</td>
@@ -143,18 +150,24 @@
             </tbody>
 
         </table>
-        <button ng-click="checkAll()"
-                class="btn btn-default form-button">
-            Tout séléctionner
-        </button>
-        <button class="btn btn-default form-button"
-                ng-click="deleteAllEmails()">
-            Tout supprimer
-        </button>
-        <button type="submit"
-                class="btn btn-default form-button"
-                ng-click="update(broadcastList._id, broadcastList.emails)">
-            Modifier la liste
-        </button>
+        <div class="form">
+            <a ng-click="checkAll()"
+                    class="btn" title="Tout séléctionner" >
+                    <span class="glyphicon glyphicon-asterisk" title="Tout séléctionner"></span>
+                    <span class="glyphicon glyphicon-ok" title="Tout séléctionner"></span>
+            </a>
+            <a class="btn"
+                    ng-click="deleteAllEmails()" title="Tout supprimer">
+                    <span class="glyphicon glyphicon-asterisk" title="Tout supprimer"></span>
+                    <span class="glyphicon glyphicon-remove" title="Tout supprimer"></span>
+                
+            </a>
+            <a type="submit"
+                    class="btn"
+                    ng-click="update(broadcastList._id, broadcastList.emails)" title="Modifier la liste">
+                    <span class="glyphicon glyphicon-pencil" title="Modifier la liste"></span>
+                
+            </a>
+        </div>
     </div>
 </div>
