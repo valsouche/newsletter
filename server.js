@@ -9,7 +9,7 @@
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
     var nodemailer = require('nodemailer');
 
-    var transporter = nodemailer.createTransport();
+    var transporter = nodemailer.createTransport('smtps://fcpeneu@gmail.com:tisach29@smtp.gmail.com');
 
     // configuration =================
 
@@ -342,16 +342,17 @@
 
       app.post('/api/send-campaign', function(req, res) {
         var options = {
-          from: 'valentin.souche@epsi.fr', // sender address
+          from: 'fcpeneu@gmail.com', // sender address
           to: req.body.to, // list of receivers
           subject: req.body.subject, // Subject line
           html: req.body.content
         };
         transporter.sendMail(options, function(error, info) {
           if (error) {
-            console.log("Une erreur est survenue lors de l'envoi du mail");
+            console.log("Une erreur est survenue lors de l'envoi du mail" + error);
+          } else {
+            console.log("Messages envoyés à " + options.to);
           }
-          console.log("Messages envoyés à " + options.to);
         });
       });
 

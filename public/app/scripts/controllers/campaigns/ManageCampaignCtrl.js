@@ -17,13 +17,12 @@ angular.module('newsletterApp')
 
     // when landing on the page, get all todos and show them
     $http.get('/api/campaigns')
-            .success(function(data) {
-                $scope.campaigns = data;
-        //$scope.todos = data;
-    })
-            .error(function(data) {
-                console.log('Error: ' + data);
-    });
+      .success(function(data) {
+          $scope.campaigns = data;
+      })
+      .error(function(data) {
+          console.log('Error: ' + data);
+      });
 
     // delete a todo after checking it
     $scope.deleteCampaigns = function(id) {
@@ -75,7 +74,7 @@ angular.module('newsletterApp')
        .success(function(data) {
 
        });
-      console.log('Envoi à '+ email + 'effectué !')
+      console.log('Envoi à '+ email + ' effectué !')
     }
     
     /**
@@ -132,6 +131,8 @@ angular.module('newsletterApp')
                             console.log("Date : " + dateDiffInSeconds(d, new Date()) + "s");
                             sendEmail(campaignData.to);
                           }, timer);
+
+                          SweetAlert.swal("Bon voyage !", "Votre campagne vient d'être envoyée", "success");
                         }
                       })
                   });
