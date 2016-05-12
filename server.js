@@ -198,7 +198,6 @@
               res.send(err);
             }
           });
-      console.log(req);
     });
 
     // delete a campaign
