@@ -75,7 +75,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
             .error( function(data) {
                 console.log('Error: ' + data);
             });
-            
     }
     
     /**

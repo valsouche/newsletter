@@ -18,6 +18,7 @@
             </thead>
             <tbody id="campaigne_list">
               <tr ng-repeat="campaign in campaigns">
+<<<<<<< HEAD
                 <td>{{campaign.status}}</td>
                 <td>
                   <table>
@@ -35,6 +36,17 @@
                     <a href='/#/' class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
                     <a ng-click="deleteCampaigns(campaign._id)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
+=======
+                  <th>{{campaign.status}}</th>
+                  <td class="title-campaigne">{{campaign.title}}</td>
+                  <td class="descp-campaigne">{{campaign.describe}}</td>
+                  <td class="btn-campaigne">
+                      <!-- <a ng-click="detailCampaign(campaign._id)" class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a> -->
+                      <a ng-href='#/detail-campaign/{{campaign._id}}' class='btn'  title="Detail"><span class="glyphicon glyphicon-th-list"></span></a>
+                      <a ng-click="sendCampain(campaign._id)" class='btn' title="Send"><span class="glyphicon glyphicon-envelope"></span></a>
+                      <a ng-click="deleteCampaigns(campaign._id)" class='btn supprimer' title="Supprimer"><span class="glyphicon glyphicon-trash"></span></a>
+                  </td>
+>>>>>>> master
               </tr>
             </tbody>
           </table>
