@@ -128,3 +128,34 @@ textarea.ng-invalid-maxlength {
   color: #fff;
   background-color: #1A2937;
 }
+/*********************************************/
+/*page home*/
+#intro-head{
+  text-align: center;
+}
+#intro-head img{
+  width: 35%;
+}
+.intro .row{
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.intro .row .text{
+  padding-top: 40px;
+}
+.intro .row p{
+  text-align:justify;
+}
+.groupe{
+  padding:10px;
+  background: #f5f5f5;
+  margin-bottom: -20px;
+}
+.groupe table{
+  margin-top: 15px;
+}
+.groupe td img{
+  border-radius:50%;
+  width: 150px;
+}
