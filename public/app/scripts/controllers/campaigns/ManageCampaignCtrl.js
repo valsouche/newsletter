@@ -10,7 +10,7 @@
 angular.module('newsletterApp')
         .controller('ManageCampaignCtrl', function ($scope, $http,SweetAlert,$timeout) {
             $scope.formData = {};
-
+            $scope.allEmails = [];
             var campaignData;
             var timer;
             var campaign, campaignEmails, campaignTpl, emails;
@@ -110,6 +110,7 @@ angular.module('newsletterApp')
                     var x;
                     campaignEmails = data[0];
                     emails = campaignEmails.emails;
+                    $scope.allEmails = emails;
                     // starting code
 
                       emails.forEach(function(email){
@@ -124,6 +125,7 @@ angular.module('newsletterApp')
 
                           $timeout(function () {
                             campaignData = {
+                              id: campaign_id,
                               to: email.address,
                               subject: campaign.describe,
                               content: campaignTpl

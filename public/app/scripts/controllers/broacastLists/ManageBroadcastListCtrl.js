@@ -12,7 +12,9 @@
 angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function ($scope, $http, $location, $routeParams, SweetAlert) {
       
     // Broadcast List Object
-    $scope.broadcastList = {};
+    $scope.broadcastList = {
+      emails: []
+    };
     $scope.broadcastLists = {};
     $scope.broadcastListCurrentlyUpdating = false;
     $scope.email = []; // Use to stock all manual added and csv emails address
@@ -75,27 +77,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
                 console.log('Error: ' + data);
             });
     }
-    
-    /**
-     * 
-     * @param {type} data
-     *      the object to update the entities
-     * 
-     * @returns
-     *      nothing
-     */
-    
-    function updateAll(data) {
-        
-        // clean the entity
-            
-        //$scope.broadcastList = {};
-          
-        // update the results
-          
-        $scope.broadcastLists = data;
-        //$scope.$apply();
-    }
 
   // BROADCAST LIST MANAGE
     // Create a new broadcast list
@@ -104,8 +85,10 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         $http.post('/api/broadcast-lists', $scope.broadcastList)
 
           .success(function (data) {
+
             updateAll(data);
 
+            console.log(data);
           })
 
           .error(function (data) {
@@ -199,25 +182,30 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
   // MANAGE EACH BROADCAST LIST EMAIL
   // Add all CSV emails address in email tab
   $scope.addCsvEmails = function() {
+    var test;
     $scope.csv.result.forEach(function(value){
-      $scope.broadcastList.emails.push({
+      $scope.email.push({
         address: value.email,
         deleted: false
       });
+      test = $scope.email;
     });
+    $scope.broadcastList.emails = test;
   };
 
   // Add emails address manually
   $scope.addManualEmails = function() {
     if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
-      $scope.broadcastList.emails.push({
+      $scope.email.push({
         address: $scope.address,
         deleted: false
       });
       $scope.address = '';
+      var test = $scope.email;
     } else {
       console.log('Champ vide !');
     }
+    $scope.broadcastList.emails = test;
   };
 
   $scope.checkAll = function() {

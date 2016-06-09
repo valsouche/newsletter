@@ -15,7 +15,7 @@ angular.module('newsletterApp')
       'Karma'
     ];
 
-    $scope.dataCampaign = {};
+    $scope.dataCampaign = {stats: []};
 
     $http.get('/api/campaigns')
       .success(function(data) {

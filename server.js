@@ -8,8 +8,9 @@
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
     var nodemailer = require('nodemailer');
+    var _  = require('lodash');
 
-    var transporter = nodemailer.createTransport('smtps://fcpeneu@gmail.com:tisach29@smtp.gmail.com');
+    var transporter = nodemailer.createTransport('smtp://mael@cochise.fr:mael34@10.10.20.51');
 
     // configuration =================
 
@@ -56,7 +57,8 @@
         template : String,
         contact : String,
         creator : String,
-        status : String
+        status : String,
+        stats: []
     });
 
 
@@ -191,7 +193,8 @@
           status: "En attente",
           broadcastList: req.body.broadcastList.title,
           template: req.body.template._id,
-          done : false
+          done : false,
+          stats: []
         }, function(err, campaign) {
             if(err) {
               res.send(err);
@@ -308,7 +311,12 @@
                 res.send(err);
               }
 
-            res.send(template);
+            Template.find(function(err, templates) {
+              if (err) {
+                res.send(err)
+              }
+              res.json(templates);
+            });
           });
       });
 
@@ -345,10 +353,10 @@
 
       app.post('/api/send-campaign', function(req, res) {
         var options = {
-          from: 'fcpeneu@gmail.com', // sender address
+          from: 'mael@cohise.fr', // sender address
           to: req.body.to, // list of receivers
           subject: req.body.subject, // Subject line
-          html: req.body.content
+          html: "<img src=\'http://127.0.0.1:8080/api/track-mail/" + req.body.id + "/" + req.body.to + "'>" + req.body.content
         };
         transporter.sendMail(options, function(error, info) {
           if (error) {
@@ -359,6 +367,28 @@
 
           res.json(info);
         });
+      });
+
+
+      app.get('/api/track-mail/:id_campaign/:mail', function(req, res) {
+        var mailOpened = req.params.mail;
+        var id_campaign = req.params.id_campaign;
+
+        Campaign.findOne({_id:id_campaign} , function(err,campaign) {
+          if(err) {
+            res.send('error : ' + err);
+          }
+            if (!_.includes(campaign.stats, mailOpened)) {
+              campaign.stats.push(mailOpened);
+            }
+
+
+          campaign.save(function() {
+            res.send(campaign);
+          });
+        });
+        console.log('opened');
+
       });
 
   // application -------------------------------------------------------------
