@@ -23,16 +23,14 @@
 	  </div>
 	  <div class="col-md-6 col-sm-12">
 	    <label for="templates" class="control-label">Selectionner un template: </label>
-      <select id="templates" class="form-control" ng-model="detailCampaign.templete">
-        <option> Templates</option>
-      </select>	
+	  	<select id="templates" class="form-control" ng-model="detailCampaign.template" ng-options="tpl.title for tpl in templates">
+	  	</select>
 	  </div>
 	  <div class="col-md-6 col-sm-12">
 	    <label for="diffusionList" class="control-label">Selectionner une liste de contact: </label>
-      	<select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList">
-        <option>Listes</option>
-      </select>
-
+      	<select id="diffusionList" class="form-control" ng-model="detailCampaign.diffusionList" ng-options="bl.title for bl in broadcastLists">
+      	</select>
+		  <pre>{{detailCampaign}}</pre>
 	  </div>
 	  
 	  <div class="form-group form col-sm-12">

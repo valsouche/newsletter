@@ -108,12 +108,9 @@
             function(err, broadcastList) {
                     broadcastList.title = req.body.title,
                     broadcastList.emails = req.body.emails;
-                    
-                    broadcastList.save(function() {
-                    });
-            }
-        );
-        
+
+                    res.json(broadcastList);
+            });
     });
 
     // create email and send back all emails after creation
@@ -125,10 +122,12 @@
         BroadcastList.create({
            title: req.body.title,
            emails: req.body.emails
-        }, function(err) {
+        }, function(err, broadcastList) {
             if(err) {
               res.send(err);
             }
+
+            res.json(broadcastList);
         });
         
     });
@@ -193,10 +192,11 @@
           broadcastList: req.body.broadcastList.title,
           template: req.body.template._id,
           done : false
-        }, function(err) {
+        }, function(err, campaign) {
             if(err) {
               res.send(err);
             }
+            res.json(campaign);
           });
     });
 
@@ -230,10 +230,11 @@
           campaign.describe = req.body.describe;
           campaign.template = req.body.template;
           campaign.diffusionList = req.body.diffusionList;
-          campaign.save(function() {
-            res.send("Campaign Updated !");
-          });
 
+
+        campaign.save(function() {
+          res.json(campaign);
+        });
       })
     });
     //verification title unique
@@ -290,7 +291,7 @@
             template.content = req.body.content;
 
             template.save(function() {
-              res.send("Template Updated !");
+              res.send(template);
             });
           });
         });
@@ -302,10 +303,12 @@
             title: req.body.title,
             describe: req.body.describe,
             content: req.body.content
-          }, function(err) {
+          }, function(err, template) {
               if(err) {
                 res.send(err);
               }
+
+            res.send(template);
           });
       });
 
@@ -353,6 +356,8 @@
           } else {
             console.log("Messages envoyés à " + options.to);
           }
+
+          res.json(info);
         });
       });
 

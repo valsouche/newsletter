@@ -48,7 +48,6 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         // get all broadcast lists
 
         $http.get('/api/broadcast-lists')
-
           .success( function(data) {
             $scope.broadcastLists = data;
           })
@@ -105,10 +104,8 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
         $http.post('/api/broadcast-lists', $scope.broadcastList)
 
           .success(function (data) {
-
             updateAll(data);
 
-            console.log(data);
           })
 
           .error(function (data) {
@@ -202,30 +199,25 @@ angular.module('newsletterApp').controller('ManageBroadcastListCtrl', function (
   // MANAGE EACH BROADCAST LIST EMAIL
   // Add all CSV emails address in email tab
   $scope.addCsvEmails = function() {
-    var test;
     $scope.csv.result.forEach(function(value){
-      $scope.email.push({
+      $scope.broadcastList.emails.push({
         address: value.email,
         deleted: false
       });
-      test = $scope.email;
     });
-    $scope.broadcastList.emails = test;
   };
 
   // Add emails address manually
   $scope.addManualEmails = function() {
     if ($scope.address != null && $scope.address != '' && $scope.address.length > 0) {
-      $scope.email.push({
+      $scope.broadcastList.emails.push({
         address: $scope.address,
         deleted: false
       });
       $scope.address = '';
-      var test = $scope.email;
     } else {
       console.log('Champ vide !');
     }
-    $scope.broadcastList.emails = test;
   };
 
   $scope.checkAll = function() {

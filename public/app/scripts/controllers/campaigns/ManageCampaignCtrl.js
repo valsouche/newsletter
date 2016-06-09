@@ -19,6 +19,7 @@ angular.module('newsletterApp')
     $http.get('/api/campaigns')
       .success(function(data) {
           $scope.campaigns = data;
+        console.log(data);
       })
       .error(function(data) {
           console.log('Error: ' + data);
