@@ -2,6 +2,9 @@
 /public/node_modules
 /dist
 /.tmp
+/public/.tmp
+/public/dist
+
 /.sass-cache
 public/bower_components
 /bower_components

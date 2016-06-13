@@ -73,9 +73,11 @@ angular.module('newsletterApp')
     function sendEmail(email) {
       $http.post("/api/send-campaign", campaignData)
        .success(function(data) {
-
-       });
-      console.log('Envoi à '+ email + ' effectué !')
+         console.log('Envoi à '+ email + ' effectué !')
+       })
+        .error(function(err) {
+          console.log('Un problème est survenu lors de l\'envoi du message');
+        })
     }
     
     /**
