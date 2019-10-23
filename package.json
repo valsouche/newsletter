@@ -6,7 +6,7 @@
     "express": "~4.7.2",
     "lodash": "^4.13.1",
     "method-override": "~2.1.2",
-    "mongoose": "~3.6.2",
+    "mongoose": "~5.7.6",
     "morgan": "~1.2.2",
     "nodemailer": "^2.4.0"
   }
